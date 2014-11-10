@@ -6,3 +6,12 @@ Codename: uroboronest
 Architectures: iphoneos-arm
 Components: main
 Description: A rather circular repository
+MD5SUM:
+da1e7ab3babb950111c9c4003e002fda 629 repo/Packages
+7105e0cc49d09d14aa97f77ff5e1449c 452 repo/Packages.bz2
+SHA1:
+c21c3062aa72766d033239df3ebf30567cf6d8cc 629 repo/Packages
+5b46bd21c55776f9711237c796a3a63f868180e7 452 repo/Packages.bz2
+SHA256:
+6e71957721c9d8137d0d7d49bb81fe9854ec7f42d79063b5552655c6d0fe8f55 629 repo/Packages
+c70d164e2a516d4a69acf66cce06ce3e14b6d4f3dc4231cff6ff0a8872cf235e 452 repo/Packages.bz2
