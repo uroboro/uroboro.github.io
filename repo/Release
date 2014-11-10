@@ -7,11 +7,11 @@ Architectures: iphoneos-arm
 Components: main
 Description: A rather circular repository
 MD5SUM:
-54ebde4432947cecf814a729f5d6cbc8 625 repo/Packages
-7105e0cc49d09d14aa97f77ff5e1449c 452 repo/Packages.bz2
+54ebde4432947cecf814a729f5d6cbc8 625 Packages
+c8fb33ed80bfa802514bfaae23ccba4e 453 Packages.bz2
 SHA1:
-da876e085640dbecff8e63a434386fb415575644 625 repo/Packages
-5b46bd21c55776f9711237c796a3a63f868180e7 452 repo/Packages.bz2
+da876e085640dbecff8e63a434386fb415575644 625 Packages
+b8fbef51fe0e74b58657fd57607b29c4e87e68a9 453 Packages.bz2
 SHA256:
-70836ceeabe9dac50232109983c8401713d80be997f98ffb444e24c3e9026a1f 625 repo/Packages
-c70d164e2a516d4a69acf66cce06ce3e14b6d4f3dc4231cff6ff0a8872cf235e 452 repo/Packages.bz2
+70836ceeabe9dac50232109983c8401713d80be997f98ffb444e24c3e9026a1f 625 Packages
+332ddd2e999ba741200f6d7fae216e86fe1d38414c6fe4b24db07bbaac5a94d6 453 Packages.bz2
