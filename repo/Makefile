@@ -18,7 +18,7 @@ Release: Packages Packages.bz2
 	$(eval SIZE2 := $(shell wc -c Packages.bz2 | sed 's/[[:space:]].*//'))
 	@cp release $@
 
-	@echo MD5SUM: >> $@
+	@echo MD5Sum: >> $@
 	@echo " `md5sum Packages | sed "s/  / $(SIZE1) /"`" >> $@
 	@echo " `md5sum Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
 
