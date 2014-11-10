@@ -4,7 +4,7 @@ Section: Addons (NotificationCenter)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: firmware (>= 5.0), firmware (<< 7.0), com.saurik.substrate.safemode, com.chpwn.weeloader, org.thebigboss.customwidgeticons, com.arichardson.weepreferenceloader, com.a3tweaks.flipswitch (>= 1.0.3)
 Architecture: iphoneos-arm
-Filename: ./com.uroboro.flipnc_0.0.2-150_iphoneos-arm.deb
+Filename: ./debs/com.uroboro.flipnc_0.0.2-150_iphoneos-arm.deb
 Size: 51004
 Installed-Size: 132
 MD5sum: e6f5e836865072b9beeb178c5b3263d6
