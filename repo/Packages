@@ -12,3 +12,17 @@ Description: FlipNC brings your FlipSwitch toggles to your notification center.
 Name: FlipNC
 Author: uroboro <uroboro.845@gmail.com>
 
+Package: com.uroboro.flipnc
+Version: 0.0.2-166
+Section: Addons (NotificationCenter)
+Maintainer: uroboro <uroboro.845@gmail.com>
+Depends: firmware (>= 5.0), firmware (<< 7.0), com.saurik.substrate.safemode, com.chpwn.weeloader, org.thebigboss.customwidgeticons, com.arichardson.weepreferenceloader, com.a3tweaks.flipswitch (>= 1.0.3)
+Architecture: iphoneos-arm
+Filename: ./debs/com.uroboro.flipnc_0.0.2-166_iphoneos-arm.deb
+Size: 50944
+Installed-Size: 132
+MD5sum: b82d21de226484c095416ab45efda1ce
+Description: FlipNC brings your FlipSwitch toggles to your notification center.
+Name: FlipNC
+Author: uroboro <uroboro.845@gmail.com>
+
