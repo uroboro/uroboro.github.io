@@ -1,28 +1,42 @@
 Package: com.uroboro.flipnc
-Version: 0.0.2-150
-Section: Addons (NotificationCenter)
-Maintainer: uroboro <uroboro.845@gmail.com>
-Depends: firmware (>= 5.0), firmware (<< 7.0), com.saurik.substrate.safemode, com.chpwn.weeloader, org.thebigboss.customwidgeticons, com.arichardson.weepreferenceloader, com.a3tweaks.flipswitch (>= 1.0.3)
-Architecture: iphoneos-arm
-Filename: ./debs/com.uroboro.flipnc_0.0.2-150_iphoneos-arm.deb
-Size: 51004
-Installed-Size: 132
-MD5sum: e6f5e836865072b9beeb178c5b3263d6
-Description: FlipNC brings your FlipSwitch toggles to your notification center.
-Name: FlipNC
-Author: uroboro <uroboro.845@gmail.com>
-
-Package: com.uroboro.flipnc
 Version: 0.0.2-166
 Section: Addons (NotificationCenter)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: firmware (>= 5.0), firmware (<< 7.0), com.saurik.substrate.safemode, com.chpwn.weeloader, org.thebigboss.customwidgeticons, com.arichardson.weepreferenceloader, com.a3tweaks.flipswitch (>= 1.0.3)
 Architecture: iphoneos-arm
-Filename: ./debs/com.uroboro.flipnc_0.0.2-166_iphoneos-arm.deb
+Filename: ./packages/com.uroboro.flipnc_0.0.2-166_iphoneos-arm.deb
 Size: 50944
 Installed-Size: 132
 MD5sum: b82d21de226484c095416ab45efda1ce
 Description: FlipNC brings your FlipSwitch toggles to your notification center.
 Name: FlipNC
 Author: uroboro <uroboro.845@gmail.com>
+
+Package: com.uroboro.ncbrightslider
+Version: 0.0.1-33
+Section: Addons (NotificationCenter)
+Maintainer: uroboro <uroboro.845@gmail.com>
+Depends: firmware (>= 5.0), firmware (<< 7.0), com.saurik.substrate.safemode, com.chpwn.weeloader, org.thebigboss.customwidgeticons, com.arichardson.weepreferenceloader
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.ncbrightslider_0.0.1-33_iphoneos-arm.deb
+Size: 7046
+Installed-Size: 32
+MD5sum: e8b8f5885e61dcc009ca28a406a148b9
+Description: An awesome widget for the notification center!
+Name: NCBrightSlider
+Author: uroboro <uroboro.845@gmail.com>
+
+Package: com.uroboro.notificationexplorer
+Version: 0.0.1-69
+Section: Tweaks
+Maintainer: uroboro<uroboro.845@gmail.com>
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.notificationexplorer_0.0.1-69_iphoneos-arm.deb
+Size: 6868
+Installed-Size: 24
+MD5sum: dc679c05e176fd3f7f0182e4ed9aabab
+Description: An awesome MobileSubstrate tweak!
+Name: Notification Explorer
+Author: uroboro<uroboro.845@gmail.com>
 
