@@ -1,3 +1,18 @@
+Package: com.uroboro.activator.listener.wol
+Version: 0.1-3
+Priority: optional
+Section: Addons (Activator)
+Maintainer: uroboro <uroboro.845@gmail.com>
+Depends: mobilesubstrate, libactivator
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.activator.listener.wol_0.1-3_iphoneos-arm.deb
+Size: 10102
+Installed-Size: 76
+MD5sum: 695fd47916fe92de22106172b6e4b8cb
+Description: Sends a magic packet to target device
+Name: Wake-On-LAN Listener
+Author: uroboro <uroboro.845@gmail.com>
+
 Package: com.uroboro.flipnc
 Version: 0.0.2-166
 Section: Addons (NotificationCenter)

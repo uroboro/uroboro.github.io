@@ -1,17 +1,7 @@
 #!/bin/sh
 
-all: Packages.bz2 Release
-
-clean:
-	@rm -rf Packages Packages.bz2 Release &> /dev/null
-
-Packages:
-	@./dpkg-scanpackages -m . /dev/null > Packages
-
-Packages.bz2: Packages
-	@cp $^ $^_
-	@bzip2 $^_
-	@mv $^_.bz2 $@
+all: Release
+.PHONY: Packages Packages.bz2 Release
 
 Release: Packages Packages.bz2
 	$(eval SIZE1 := $(shell wc -c Packages | sed 's/[[:space:]].*//'))
@@ -29,3 +19,12 @@ Release: Packages Packages.bz2
 	@echo SHA256: >> $@
 	@echo " `sha256sum Packages | sed "s/  / $(SIZE1) /"`" >> $@
 	@echo " `sha256sum Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
+
+Packages:
+	@./dpkg-scanpackages -m . /dev/null > Packages
+
+Packages.bz2: Packages
+	@bzip2 -fk $^
+
+clean:
+	@rm -rf Packages Packages.bz2 Release &> /dev/null
