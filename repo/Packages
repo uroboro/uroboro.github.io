@@ -13,6 +13,51 @@ Description: Sends a magic packet to target device
 Name: Wake-On-LAN Listener
 Author: uroboro <uroboro.845@gmail.com>
 
+Package: com.uroboro.activator.listener.wol
+Version: 0.1-4
+Priority: optional
+Section: Addons (Activator)
+Maintainer: uroboro <uroboro.845@gmail.com>
+Depends: mobilesubstrate, libactivator
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.activator.listener.wol_0.1-4_iphoneos-arm.deb
+Size: 10098
+Installed-Size: 76
+MD5sum: 36bbef8531cd09d4c0259ca02096a81e
+Description: Sends a magic packet to target device
+Name: Wake-On-LAN Listener
+Author: uroboro <uroboro.845@gmail.com>
+
+Package: com.uroboro.event.startup
+Version: 0.0.1-2
+Priority: optional
+Section: Addons (Activator)
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: mobilesubstrate, libactivator
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.event.startup_0.0.1-2_iphoneos-arm.deb
+Size: 4520
+Installed-Size: 20
+MD5sum: b0b03b2c60fb21621cde462916b19d5f
+Description: A simple event for the libactivator API!
+Name: Startup Event
+Author: uroboro <uroboro845@gmail.com>
+
+Package: com.uroboro.eventdisplay
+Version: 0.1-15
+Priority: optional
+Section: Addons (Activator)
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: mobilesubstrate, libactivator
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.eventdisplay_0.1-15_iphoneos-arm.deb
+Size: 7186
+Installed-Size: 28
+MD5sum: 84978b19cf2fd8809e9e4db07b43f893
+Description: Displays its assigned event.
+Name: eventDisplay
+Author: uroboro <uroboro845@gmail.com>
+
 Package: com.uroboro.flipnc
 Version: 0.0.2-166
 Section: Addons (NotificationCenter)
