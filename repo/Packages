@@ -171,3 +171,19 @@ Description: An awesome MobileSubstrate tweak!
 Name: Notification Explorer
 Author: uroboro <uroboro.845@gmail.com>
 
+Package: com.uroboro.unlockevents
+Version: 0.0.1-32
+Priority: optional
+Section: Addons (Activator)
+Maintainer: uroboro <uroboro.845@gmail.com>
+Depends: mobilesubstrate, libactivator
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.unlockevents_0.0.1-32_iphoneos-arm.deb
+Size: 8694
+Installed-Size: 72
+MD5sum: 7298b075c83761aefc75f80fafcc7284
+Description: Unlock events for Activator
+Name: UnlockEvents
+Author: uroboro <uroboro.845@gmail.com>
+Homepage: https://github.com/uroboro/UnlockEvents
+
