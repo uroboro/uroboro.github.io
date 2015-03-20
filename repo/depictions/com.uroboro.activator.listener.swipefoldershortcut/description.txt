@@ -1,0 +1,15 @@
+{
+	"name":"SwipeFolderShortcut"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Set up this listener for the four icon flick gestures."
+		, "Flick a folder icon up, right, down and left to open the first, second, third and fourth apps within said folder"
+		, "If you'd like to design me an icon, please do so!"
+	]
+	, "changelog":[
+		  "1.0", "First!"
+	]
+	, "screenshotCount":0
+}
