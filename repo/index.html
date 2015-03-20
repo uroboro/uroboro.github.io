@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="../css/ios7.css" rel="stylesheet">
+    <meta content="width=device-width, user-scalable=no" name="viewport">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<script type="text/javascript" src="../js/utils.js"></script>
+	<script type="text/javascript" src="../js/element.js"></script>
+	<script type="text/javascript" src="../js/microajax.js"></script>
+
+<script type="text/javascript">
+var noPackage = {
+	"name":"PACKAGE"
+	, "developer":"DEVELOPER"
+	, "twitter":"TWITTERHANDLE"
+	, "developerSite":"SITE"
+	, "description":[
+		  "DESCRIPTION"
+	]
+	, "changelog":[
+		"VERSION","INFORMATION"
+	]
+}
+
+var query = getQuery();
+var packageID = query["p"];
+
+function loaded() {
+	if (!packageID) { // Load package list
+		loadPkgListUI();
+		new microAjax("Packages", updatePkgListPage);
+	} else { // there's a package id in the url
+		if (query["screenshots"] == 1) {
+			loadScrnShtUI();
+		} else {
+			loadPkgUI();
+		}
+		var decodedFile = "depictions/"+packageID+"/description.txt";
+		getJSON({url:decodedFile,callback:updatePage,onfail:ff});
+	}
+	getJSON({url:"repo.txt",callback:updateRepoPage});
+}
+
+function ff(e){ // no package found, loading dummy
+console.log(e);
+	updatePage(noPackage);
+}
+
+function updatePkgListPage(res) {
+	var array = res.split("\n").sort();
+	var packages = [];
+	for (i in array) {
+		var obj = array[i];
+		if (obj.indexOf("Package: ") > -1) {
+			var pkgID = obj.replace("Package: ","");
+			if (packages.indexOf(pkgID) == -1 ) {
+				packages.push(pkgID);
+			}
+		}
+	}
+
+	// Package list UI
+	// Title
+	var t = document.getElementById("packageListTitle");
+	if (t){
+		t.innerHTML = "Packages";//+pkgName;
+	}
+	// List
+	var list = document.getElementById("packageList");
+	if (list){
+		for (p in packages) {
+			var li11 = elementFromDictionary({_type:"li"});
+			list.appendChild(li11);
+			var lnk = elementFromDictionary({_type:"a",href:"index.html?p="+packages[p],innerHTML:{_type:"text",text:packages[p]}})
+			li11.appendChild(lnk);
+		};
+		var li11 = elementFromDictionary({_type:"li"});
+		list.appendChild(li11);
+		var lnk = elementFromDictionary({_type:"a",href:"index.html?p=com.uroboro.test",innerHTML:{_type:"text",text:"com.uroboro.test"}})
+		li11.appendChild(lnk);
+	}
+}
+
+function updatePage(md) {
+//elementPrintDescription(md);
+
+	var devName = md["developer"];
+
+	var pkgName = md["name"];
+	window.document.title = pkgName+" by "+devName;
+
+	// Package UI
+	// Description
+	var desc = document.getElementById("description");
+	if (desc){
+		for (d in md["description"]) {
+			var div = document.createElement('p');
+			div.innerHTML = md["description"][d];
+			desc.appendChild(div);
+		};
+	}
+	// Screenshots link
+	var sh = document.getElementById("screenshots");
+	if (sh) {
+		sh.appendChild(elementFromDictionary({_type:"a",href:"index.html?p="+packageID+"&screenshots=1",innerHTML:{_type:"text",text:"Screenshots"}}));
+	}
+	// Changelog
+	var desc = document.getElementById("changelog");
+	if (desc){
+		var b = 1;
+		for (d in md["changelog"]) {
+			var div = document.createElement('p');
+			var B = b ? " :" : "";
+			div.innerHTML = md["changelog"][d] + B;
+			desc.appendChild(div);
+			b = !b;
+		};
+	}
+	// Developer info
+	// Twitter
+	var tw = document.getElementById("twitter");
+	if (tw) {
+		var twName = md["twitter"];
+		tw.appendChild(elementFromDictionary({_type:"a",href:"https://twitter.com/"+twName,innerHTML:{_type:"text",text:"@"+twName+" on Twitter"}}));
+		
+	}
+	// Site
+	var site = document.getElementById("developerSite");
+	if (site) {
+		site.appendChild(elementFromDictionary({_type:"a",href:md["developerSite"],innerHTML:{_type:"text",text:devName+"'s page"}}));
+	}
+
+	// Screenshots UI
+	// Title
+	var sst = document.getElementById("screenshotListTitle");
+	if (sst){
+		sst.innerHTML = "Screenshots of "+pkgName;
+	}
+	// Screenshot list
+	var ssl = document.getElementById("screenshotList");
+	if (ssl){
+		for (var d = 0; d < md["screenshotCount"]; d++) {
+			var imgPath = "depictions/"+packageID+"/screenshots/"+d+".jpg";
+			var e1 = elementFromDictionary({_type:"p"});
+			var e2 = elementFromDictionary({_type:"a",href:imgPath});
+			var e3 = elementFromDictionary({_type:"img",src:imgPath});
+			e1.appendChild(e2).appendChild(e3);
+			ssl.appendChild(e1);
+		};
+	}
+}
+
+function updateRepoPage(rd) {
+	var repo = document.getElementById("repo");
+	if (repo) {
+		repo.appendChild(elementFromDictionary({_type:"a",href:rd["url"],innerHTML:{_type:"text",text:rd["name"]}}));
+	}
+}
+
+function loadPkgUI() {
+	var h1 = elementFromDictionary({_type:"h2",innerHTML:{_type:"text",text:"Description"}});
+	document.body.appendChild(h1);
+	var ul1 = elementFromDictionary({_type:"ul"});
+	var li11 = elementFromDictionary({_type:"li",id:"description"});
+	var li12 = elementFromDictionary({_type:"li",id:"screenshots"});
+	ul1.appendChild(li11);
+	ul1.appendChild(li12);
+	document.body.appendChild(ul1);
+
+	var h2 = elementFromDictionary({_type:"h2",innerHTML:{_type:"text",text:"Changelog"}});
+	document.body.appendChild(h2);
+	var ul2 = elementFromDictionary({_type:"ul"});
+	var li21 = elementFromDictionary({_type:"li",id:"changelog"});
+	ul2.appendChild(li21);
+	document.body.appendChild(ul2);
+
+	var h3 = elementFromDictionary({_type:"h2",innerHTML:{_type:"text",text:"Developer"}});
+	document.body.appendChild(h3);
+	var ul3 = elementFromDictionary({_type:"ul"});
+	var li31 = elementFromDictionary({_type:"li",id:"twitter"});
+	var li32 = elementFromDictionary({_type:"li",id:"developerSite"});
+	ul3.appendChild(li31);
+	ul3.appendChild(li32);
+	document.body.appendChild(ul3);
+
+	var p = elementFromDictionary({_type:"p",id:"repo"});
+	document.body.appendChild(p);
+}
+
+function loadScrnShtUI() {
+	var h1 = elementFromDictionary({_type:"h2",id:"screenshotListTitle",innerHTML:{_type:"text",text:"Screenshots of "}});
+	document.body.appendChild(h1);
+	var ul1 = elementFromDictionary({_type:"ul"});
+	var li11 = elementFromDictionary({_type:"li",id:"screenshotList"});
+	ul1.appendChild(li11);
+	document.body.appendChild(ul1);
+
+	var p = elementFromDictionary({_type:"p",id:"repo"});
+	document.body.appendChild(p);
+}
+
+function loadPkgListUI() {
+	var h1 = elementFromDictionary({_type:"h2",id:"packageListTitle",innerHTML:{_type:"text",text:"Packages"}});
+	document.body.appendChild(h1);
+	var ul1 = elementFromDictionary({_type:"ul",id:"packageList"});
+	document.body.appendChild(ul1);
+
+	var p = elementFromDictionary({_type:"p",id:"repo"});
+	document.body.appendChild(p);
+}
+</script>
+</head>
+<body onload="loaded()">
+</body>
+</html>
