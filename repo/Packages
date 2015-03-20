@@ -13,6 +13,22 @@ Description: A simple listener for the libactivator API!
 Name: SwipeFolderShortcut
 Author: uroboro <uroboro845@gmail.com>
 
+Package: com.uroboro.activator.listener.swipefoldershortcut
+Version: 0.0.1-12
+Priority: optional
+Section: Addons (Activator)
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: mobilesubstrate, libactivator
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.activator.listener.swipefoldershortcut_0.0.1-12_iphoneos-arm.deb
+Size: 5904
+Installed-Size: 24
+MD5sum: 452175b2ffa06af556021d8a33bb97a6
+Description: A simple listener for the libactivator API!
+Name: SwipeFolderShortcut
+Author: uroboro <uroboro845@gmail.com>
+Depiction: http://uroboro.github.io/repo/?p=com.uroboro.activator.listener.swipefoldershortcut
+
 Package: com.uroboro.activator.listener.wol
 Version: 0.1-3
 Priority: optional
