@@ -71,12 +71,12 @@ function updatePkgListPage(res) {
 		for (p in packages) {
 			var li11 = elementFromDictionary({_type:"li"});
 			list.appendChild(li11);
-			var lnk = elementFromDictionary({_type:"a",href:"index.html?p="+packages[p],innerHTML:{_type:"text",text:packages[p]}})
+			var lnk = elementFromDictionary({_type:"a",href:"?p="+packages[p],innerHTML:{_type:"text",text:packages[p]}})
 			li11.appendChild(lnk);
 		};
 		var li11 = elementFromDictionary({_type:"li"});
 		list.appendChild(li11);
-		var lnk = elementFromDictionary({_type:"a",href:"index.html?p=com.uroboro.test",innerHTML:{_type:"text",text:"com.uroboro.test"}})
+		var lnk = elementFromDictionary({_type:"a",href:"?p=com.uroboro.test",innerHTML:{_type:"text",text:"com.uroboro.test"}})
 		li11.appendChild(lnk);
 	}
 }
@@ -102,7 +102,7 @@ function updatePage(md) {
 	// Screenshots link
 	var sh = document.getElementById("screenshots");
 	if (sh) {
-		sh.appendChild(elementFromDictionary({_type:"a",href:"index.html?p="+packageID+"&screenshots=1",innerHTML:{_type:"text",text:"Screenshots"}}));
+		sh.appendChild(elementFromDictionary({_type:"a",href:"?p="+packageID+"&screenshots=1",innerHTML:{_type:"text",text:"Screenshots"}}));
 	}
 	// Changelog
 	var desc = document.getElementById("changelog");
