@@ -102,7 +102,9 @@ function updatePage(md) {
 	// Screenshots link
 	var sh = document.getElementById("screenshots");
 	if (sh) {
-		sh.appendChild(elementFromDictionary({_type:"a",href:"?p="+packageID+"&screenshots=1",innerHTML:{_type:"text",text:"Screenshots"}}));
+		if (md["screenshotCount"] > 0 ) {
+			sh.appendChild(elementFromDictionary({_type:"a",href:"?p="+packageID+"&screenshots=1",innerHTML:{_type:"text",text:"Screenshots"}}));
+		}
 	}
 	// Changelog
 	var desc = document.getElementById("changelog");
