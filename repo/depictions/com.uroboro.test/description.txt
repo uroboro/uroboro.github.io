@@ -1,5 +1,6 @@
-{
-	"name":"Test"
+﻿{
+	"packageID":"com.uroboro.test"
+	, "name":"Test"
 	, "developer":"uroboro"
 	, "twitter":"uroboro845"
 	, "developerSite":"https://www.dev.com/"

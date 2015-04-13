@@ -69,14 +69,22 @@ function updatePkgListPage(res) {
 	var list = document.getElementById("packageList");
 	if (list){
 		for (p in packages) {
+			var packageID = packages[p];
 			var li11 = elementFromDictionary({_type:"li"});
 			list.appendChild(li11);
-			var lnk = elementFromDictionary({_type:"a",href:"?p="+packages[p],innerHTML:{_type:"text",text:packages[p]}})
+			var lnk = elementFromDictionary({_type:"a",href:"?p="+packages[p],innerHTML:{_type:"text",text:packages[p]}});
+			getJSON({url:"depictions/"+packageID+"/description.txt",callback:function(md){
+				document.getElementById(md["packageID"]).innerText = md["name"];
+			}});
 			li11.appendChild(lnk);
 		};
+		var packageID = "com.uroboro.test";
 		var li11 = elementFromDictionary({_type:"li"});
 		list.appendChild(li11);
-		var lnk = elementFromDictionary({_type:"a",href:"?p=com.uroboro.test",innerHTML:{_type:"text",text:"com.uroboro.test"}})
+			var lnk = elementFromDictionary({_type:"a",id:packageID,href:"?p="+packageID,innerHTML:{_type:"text",text:packageID}});
+			getJSON({url:"depictions/"+packageID+"/description.txt",callback:function(md){
+				document.getElementById(md["packageID"]).innerText = md["name"];
+			}});
 		li11.appendChild(lnk);
 	}
 }

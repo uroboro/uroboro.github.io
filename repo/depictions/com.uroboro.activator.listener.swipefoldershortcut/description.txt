@@ -1,5 +1,6 @@
 {
-	"name":"SwipeFolderShortcut"
+	"packageID":"com.uroboro.activator.listener.swipefoldershortcut"
+	, "name":"SwipeFolderShortcut"
 	, "developer":"uroboro"
 	, "twitter":"uroboro845"
 	, "developerSite":"https://github.com/uroboro"
