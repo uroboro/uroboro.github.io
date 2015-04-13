@@ -1,0 +1,17 @@
+﻿{
+	"packageID":"com.uroboro.ncbrightslider"
+	, "name":"NCBrightSlider"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		"Requires iOS 5 or 6"
+		, "Brightness slider widget."
+		, "Tap on the images to change by 1/8."
+		, "Double tap on the images to change to min/max."
+	]
+	, "changelog":[
+		  "0.0.1-33", "First!"
+	]
+	, "screenshotCount":2
+}

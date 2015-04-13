@@ -1,0 +1,14 @@
+﻿{
+	"packageID":"com.uroboro.eventdisplay"
+	, "name":"Event Display"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Activator event \"debugger\". Choose to display via UIAlertView, SBAlertItem, BBBulletin or VSSpeechSynthesizer"
+	]
+	, "changelog":[
+		  "0.1-15", "First!"
+	]
+	, "screenshotCount":0
+}

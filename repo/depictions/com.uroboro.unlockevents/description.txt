@@ -1,0 +1,15 @@
+﻿{
+	"packageID":"com.uroboro.unlockevents"
+	, "name":"Unlock Events"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Provides event triggers for succeeding, failing and cancelling an unlock."
+		, "<text style=\"color: red;\">Warning, it's a bit outdated. :(</text>"
+	]
+	, "changelog":[
+		  "0.0.1", "First!"
+	]
+	, "screenshotCount":0
+}

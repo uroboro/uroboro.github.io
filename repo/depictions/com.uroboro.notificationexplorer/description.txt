@@ -1,0 +1,17 @@
+﻿{
+	"packageID":"com.uroboro.notificationexplorer"
+	, "name":"Notification Explorer"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Get a dictionary of notification types and names in a process."
+	]
+	, "changelog":[
+		  "0.0.1-69", "First!"
+		, "0.0.1-70", "Fix"
+		, "0.0.1-71", "Fix"
+		, "0.0.1-72", "Fix"
+	]
+	, "screenshotCount":0
+}

@@ -1,0 +1,23 @@
+﻿{
+	"packageID":"com.uroboro.flipnc"
+	, "name":"FlipNC"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Requires iOS 5 or 6"
+		, "FlipNC brings your FlipSwitch toggles to your notification center."
+		, "Configure options from Settings."
+		, "Notification Center addons must first be enabled from the Settings app, in the Notifications panel."
+	]
+	, "changelog":[
+		  "0.0.1-28", "Published on BigBoss."
+		, "0.0.2-10", "Preferences have been moved to Notifications > FlipNC. This reduces the amount of panes and unclutters the main list.<br>Templates are now a list. This is a step forward into deeper customization.<br>Now it's possible to select how many switches will be shown (2 to 5) or leave it unpaged as before (swapping between 4 and 7 for portrait and landscape).<br>The offset is now saved."
+		, "0.0.2-58", "Fixed crash when partially opening and closing the NC."
+		, "0.0.2-76", "Prevents being displayed as a thin line without buttons."
+		, "0.0.2-80", "Adds missing dependency."
+		, "0.0.2-166", "Created base class for NC widgets."
+		, "0.0.3-1", "arm64 intent (?)"
+	]
+	, "screenshotCount":0
+}

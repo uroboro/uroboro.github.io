@@ -10,7 +10,8 @@
 		, "If you'd like to design me an icon, please do so!"
 	]
 	, "changelog":[
-		  "1.0", "First!"
+		  "0.0.1-11", "First!"
+		, "0.0.1-12", "I forgot what I did here."
 	]
 	, "screenshotCount":0
 }

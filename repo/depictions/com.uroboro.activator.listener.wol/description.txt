@@ -1,0 +1,16 @@
+﻿{
+	"packageID":"com.uroboro.activator.listener.wol"
+	, "name":"Wake-on-LAN Listener"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Attempts to be a listener that wakes a pre-configured PC given a MAC address and port."
+		, "<text style=\"color: red;\">Warning, may not work. :(</text>"
+	]
+	, "changelog":[
+		  "0.0.1-3", "First!"
+		, "0.0.1-4", "arm64 (I think)"
+	]
+	, "screenshotCount":0
+}

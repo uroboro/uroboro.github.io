@@ -1,0 +1,14 @@
+﻿{
+	"packageID":"com.uroboro.event.startup"
+	, "name":"Startup Event"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Event trigger when UIApplicationDidFinishLaunching notification is posted."
+	]
+	, "changelog":[
+		  "0.0.1-2", "First!"
+	]
+	, "screenshotCount":0
+}
