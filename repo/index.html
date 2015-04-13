@@ -72,7 +72,7 @@ function updatePkgListPage(res) {
 			var packageID = packages[p];
 			var li11 = elementFromDictionary({_type:"li"});
 			list.appendChild(li11);
-			var lnk = elementFromDictionary({_type:"a",href:"?p="+packages[p],innerHTML:{_type:"text",text:packages[p]}});
+			var lnk = elementFromDictionary({_type:"a",id:packageID,href:"?p="+packages[p],innerHTML:{_type:"text",text:packages[p]}});
 			getJSON({url:"depictions/"+packageID+"/description.txt",callback:function(md){
 				document.getElementById(md["packageID"]).innerText = md["name"];
 			}});
