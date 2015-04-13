@@ -112,6 +112,8 @@ function updatePage(md) {
 	if (sh) {
 		if (md["screenshotCount"] > 0 ) {
 			sh.appendChild(elementFromDictionary({_type:"a",href:"?p="+packageID+"&screenshots=1",innerHTML:{_type:"text",text:"Screenshots"}}));
+		} else {
+			elementRemoveFromParent(sh);
 		}
 	}
 	// Changelog
