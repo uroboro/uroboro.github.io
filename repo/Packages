@@ -59,6 +59,22 @@ Description: Sends a magic packet to target device
 Name: Wake-On-LAN Listener
 Author: uroboro <uroboro.845@gmail.com>
 
+Package: com.uroboro.activator.listener.wol
+Version: 0.1-6
+Priority: optional
+Section: Addons (Activator)
+Maintainer: uroboro <uroboro.845@gmail.com>
+Depends: mobilesubstrate, libactivator
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.activator.listener.wol_0.1-6_iphoneos-arm.deb
+Size: 10052
+Installed-Size: 76
+MD5sum: 7812582d092584ac249753367d66c29e
+Description: Sends a magic packet to target device
+Name: Wake-On-LAN Listener
+Author: uroboro <uroboro.845@gmail.com>
+Depiction: http://uroboro.github.io/repo/?p=com.uroboro.activator.listener.wol
+
 Package: com.uroboro.event.startup
 Version: 0.0.1-2
 Priority: optional
