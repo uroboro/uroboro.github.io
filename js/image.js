@@ -1,9 +1,9 @@
 function imageFound(id) {
-console.log("Image " + id + " found");
 	var img = document.getElementById(id);
 	if (!img) {
 		return;
 	}
+console.log("Image " + id + " found at \"" + img.src + "\"");
 
 	img.removeAttribute("onload");
 	img.removeAttribute("onerror");
