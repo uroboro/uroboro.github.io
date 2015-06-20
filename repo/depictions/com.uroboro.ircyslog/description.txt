@@ -11,6 +11,7 @@
 	]
 	, "changelog":[
 		  "0.0.1-53", "First!"
+		, "0.0.1-54", "Added ngircd dependency."
 	]
 	, "screenshotCount":0
 }

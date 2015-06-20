@@ -147,6 +147,21 @@ Description: An awesome tool of some sort!!
 Name: IRCyslog
 Author: uroboro <uroboro845@gmail.com>
 
+Package: com.uroboro.ircyslog
+Version: 0.0.1-54
+Section: System
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: com.uroboro.library.uircclient, ngircd
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.ircyslog_0.0.1-54_iphoneos-arm.deb
+Size: 21238
+Installed-Size: 148
+MD5sum: 65d6b1fb21e4f1429739ac02b0a216d3
+Description: IRC syslog repeater.
+Name: IRCyslog
+Author: uroboro <uroboro845@gmail.com>
+Depiction: http://uroboro.github.io/repo/?p=com.uroboro.ircyslog
+
 Package: com.uroboro.library.uircclient
 Version: 0.0.1-14
 Section: System
@@ -186,6 +201,21 @@ MD5sum: 031e4f4b2e148805ff01097f3772e2ca
 Description: A small IRC client library in C.
 Name: uIRCClient
 Author: uroboro <uroboro845@gmail.com>
+
+Package: com.uroboro.library.uircclient
+Version: 0.0.1-19
+Section: System
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: firmware (>= 1.0)
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.library.uircclient_0.0.1-19_iphoneos-arm.deb
+Size: 21556
+Installed-Size: 136
+MD5sum: a6e8a175b84f9ebb0a23278dba0cb4b9
+Description: A small IRC client library in C.
+Name: uIRCClient
+Author: uroboro <uroboro845@gmail.com>
+Depiction: http://uroboro.github.io/repo/?p=com.uroboro.library.uircclient
 
 Package: com.uroboro.ncbrightslider
 Version: 0.0.1-33
