@@ -134,20 +134,6 @@ Name: FlipNC
 Author: uroboro <uroboro.845@gmail.com>
 
 Package: com.uroboro.ircyslog
-Version: 0.0.1-52+debug
-Section: System
-Maintainer: uroboro <uroboro845@gmail.com>
-Depends: 
-Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.ircyslog_0.0.1-52+debug_iphoneos-arm.deb
-Size: 25508
-Installed-Size: 148
-MD5sum: 9d6235ebe8d403a676c862361c26260f
-Description: An awesome tool of some sort!!
-Name: IRCyslog
-Author: uroboro <uroboro845@gmail.com>
-
-Package: com.uroboro.ircyslog
 Version: 0.0.1-54
 Section: System
 Maintainer: uroboro <uroboro845@gmail.com>
@@ -161,20 +147,6 @@ Description: IRC syslog repeater.
 Name: IRCyslog
 Author: uroboro <uroboro845@gmail.com>
 Depiction: http://uroboro.github.io/repo/?p=com.uroboro.ircyslog
-
-Package: com.uroboro.library.uircclient
-Version: 0.0.1-14
-Section: System
-Maintainer: uroboro <uroboro845@gmail.com>
-Depends: 
-Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.library.uircclient_0.0.1-14_iphoneos-arm.deb
-Size: 21508
-Installed-Size: 136
-MD5sum: 402d78f1cdf1f9a582d2bc7e95e0dfca
-Description: A small IRC client library in C.
-Name: uIRCClient
-Author: uroboro <uroboro845@gmail.com>
 
 Package: com.uroboro.library.uircclient
 Version: 0.0.1-15
