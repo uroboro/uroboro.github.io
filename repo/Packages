@@ -133,6 +133,34 @@ Description: FlipNC brings your FlipSwitch toggles to your notification center.
 Name: FlipNC
 Author: uroboro <uroboro.845@gmail.com>
 
+Package: com.uroboro.ircyslog
+Version: 0.0.1-53
+Section: System
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: com.uroboro.library.uircclient
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.ircyslog_0.0.1-53_iphoneos-arm.deb
+Size: 21200
+Installed-Size: 148
+MD5sum: f0f531b17e376d7b34d015d1ba2cedee
+Description: IRC syslog repeater.
+Name: IRCyslog
+Author: uroboro <uroboro845@gmail.com>
+
+Package: com.uroboro.library.uircclient
+Version: 0.0.1-14
+Section: System
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: 
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.library.uircclient_0.0.1-14_iphoneos-arm.deb
+Size: 21508
+Installed-Size: 136
+MD5sum: 402d78f1cdf1f9a582d2bc7e95e0dfca
+Description: A small IRC client library in C.
+Name: uIRCClient
+Author: uroboro <uroboro845@gmail.com>
+
 Package: com.uroboro.ncbrightslider
 Version: 0.0.1-33
 Section: Addons (NotificationCenter)

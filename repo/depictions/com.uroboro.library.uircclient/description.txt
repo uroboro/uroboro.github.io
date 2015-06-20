@@ -1,0 +1,14 @@
+{
+	"packageID":"com.uroboro.library.uircclient"
+	, "name":"libuIRCClient"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Small C IRC client library in the works."
+	]
+	, "changelog":[
+		  "0.0.1-14", "First!"
+	]
+	, "screenshotCount":0
+}

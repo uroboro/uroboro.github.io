@@ -1,0 +1,16 @@
+{
+	"packageID":"com.uroboro.ircyslog"
+	, "name":"IRCyslog"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "IRC syslog repeater"
+		, "A bot reads the syslog and sends it to a local IRC server on the device."
+		, "(Paralellizes a serial output that is the syslog)"
+	]
+	, "changelog":[
+		  "0.0.1-53", "First!"
+	]
+	, "screenshotCount":0
+}
