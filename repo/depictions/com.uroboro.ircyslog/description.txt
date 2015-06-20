@@ -8,6 +8,11 @@
 		  "IRC syslog repeater"
 		, "A bot reads the syslog and sends it to a local IRC server on the device."
 		, "(Paralellizes a serial output that is the syslog)"
+		, "Usage:"
+		, "<table><tr><td>Run <code>IRCyslog -1</code> to start the IRC server.<td></tr><tr><td>Connect to your device IP, port is 6667.<td></tr><tr><td>Join <code>#syslog</code> where the bot will print the channels it joins.<td></tr><tr><td>Run <code>IRCyslog -b</code> to make the bot start posting.<td></tr></table>
+		, "Comments:"
+		, "It is prone to fail by itself with certain messages, still unknown which character sequences trigger that."
+		, "It will trim multiline messages."
 	]
 	, "changelog":[
 		  "0.0.1-53", "First!"
