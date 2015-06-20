@@ -161,6 +161,19 @@ Description: A small IRC client library in C.
 Name: uIRCClient
 Author: uroboro <uroboro845@gmail.com>
 
+Package: com.uroboro.library.uircclient
+Version: 0.0.1-15
+Section: System
+Maintainer: uroboro <uroboro845@gmail.com>
+Architecture: iphoneos-arm
+Filename: ./packages/com.uroboro.library.uircclient_0.0.1-15_iphoneos-arm.deb
+Size: 21504
+Installed-Size: 136
+MD5sum: 9040a4d14fbf6a07533f101dcc36aac6
+Description: A small IRC client library in C.
+Name: uIRCClient
+Author: uroboro <uroboro845@gmail.com>
+
 Package: com.uroboro.ncbrightslider
 Version: 0.0.1-33
 Section: Addons (NotificationCenter)
