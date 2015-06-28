@@ -7,7 +7,16 @@
 	<script type="text/javascript" src="../js/utils.js"></script>
 	<script type="text/javascript" src="../js/element.js"></script>
 	<script type="text/javascript" src="../js/microajax.js"></script>
-
+<script>
+if (navigator.userAgent.search(/Cydia/) != -1) {
+	document.body.classList.add("cydia");
+}
+</script>
+<style>
+body.cydia {
+	background: none !important;
+}
+</style>
 <script type="text/javascript">
 var noPackage = {
 	"name":"PACKAGE"
