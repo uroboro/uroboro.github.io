@@ -1,4 +1,4 @@
-﻿{
+{
 	"packageID":"com.uroboro.flipnc"
 	, "name":"FlipNC"
 	, "developer":"uroboro"
@@ -19,5 +19,5 @@
 		, "0.0.2-166", "Created base class for NC widgets."
 		, "0.0.3-1", "arm64 intent (?)"
 	]
-	, "screenshotCount":0
+	, "screenshotCount":2
 }

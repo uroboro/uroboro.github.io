@@ -1,9 +1,9 @@
-﻿{
+{
 	"packageID":"com.uroboro.test"
 	, "name":"Test"
 	, "developer":"uroboro"
 	, "twitter":"uroboro845"
-	, "developerSite":"https://www.dev.com/"
+	, "developerSite":"https://github.com/uroboro"
 	, "description":[
 		  "<text style=\"color: red;\">This package is a replacement to PreferenceRemover. I changed the name because with the new features I implemented, it does not simply remove preferences anymore, so the name was inaccurate.</text>"
 		, "Resets a tweak's preferences. Pick the package ID of the tweak you want to reset, press the button, respring, and you're done! Simply removing the plist doesn't work anymore for iOS 8 tweaks, so I made this utility to make it easy to reset preferences"
@@ -13,5 +13,5 @@
 		  "1.0", "First!"
 		, "1.0.1", "Fix"
 	]
-	, "screenshotCount":2
+	, "screenshotCount":0
 }
