@@ -1,0 +1,13 @@
+{
+	"packageID":"com.uroboro.tweak.nopromotions"
+	, "name":"No Promotions"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Prevents Twitter from fetching promoted tweets."
+	]
+	, "changelog":[
+		  "0.0.1-3", "First!"
+	]
+}
