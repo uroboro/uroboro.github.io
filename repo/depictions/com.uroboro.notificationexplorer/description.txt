@@ -12,6 +12,7 @@
 		, "0.0.1-70", "Fix"
 		, "0.0.1-71", "Fix"
 		, "0.0.1-72", "Fix"
+		, "0.0.1-73", "Fixed filter."
 	]
 	, "screenshotCount":0
 }
