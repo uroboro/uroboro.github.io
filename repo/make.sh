@@ -7,7 +7,7 @@ mv Packages{_,}.bz2
 
 size=`wc -c Packages | sed 's/[[:space:]].*//'`
 size2=`wc -c Packages.bz2 | sed 's/[[:space:]].*//'`
-cp {r,R}elease
+cp Release{_,}
 
 echo MD5SUM: >> Release
 echo " `md5sum Packages | sed "s/  / $size /"`" >> Release

@@ -8,7 +8,7 @@ main() {
 #	done
 
 	# Build existent packages list (filenames and package names), filtered so only the latest version is listed
-	oldpath=repo/packages
+	oldpath=repo/pkgfiles
 	fullpkglist=()
 	o=0
 	for f in `ls $oldpath`; do
