@@ -175,6 +175,7 @@ function updateRepoPage(rd) {
 	var repo = document.getElementById("repo");
 	if (repo) {
 		repo.appendChild(elementFromDictionary({_type:"a",href:rd["url"],innerHTML:{_type:"text",text:rd["name"]}}));
+		repo.appendChild(elementFromDictionary({_type:"a",href:"cydia://url/https://cydia.saurik.com/api/share#?source="+rd["url"],innerHTML:{_type:"text",text:"Add to Cydia"}}));
 	}
 }
 
