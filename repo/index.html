@@ -1,12 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="../favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="../favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="../favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="../favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="../favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="../favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
+	<link rel="manifest" href="../favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
     <link href="../css/ios7.css" rel="stylesheet">
     <meta content="width=device-width, user-scalable=no" name="viewport">
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+
+	<!-- Scripts -->
 	<script type="text/javascript" src="../js/utils.js"></script>
 	<script type="text/javascript" src="../js/element.js"></script>
 	<script type="text/javascript" src="../js/microajax.js"></script>
+
 <script>
 if (navigator.userAgent.search(/Cydia/) != -1) {
 	document.body.classList.add("cydia");
@@ -17,24 +39,92 @@ body.cydia {
 	background: none !important;
 }
 </style>
+
 <script type="text/javascript">
-var noPackage = {
-	"name":"PACKAGE"
-	, "developer":"DEVELOPER"
-	, "twitter":"TWITTERHANDLE"
-	, "developerSite":"SITE"
-	, "description":[
-		  "DESCRIPTION"
-	]
-	, "changelog":[
-		"VERSION","INFORMATION"
-	]
+function noPackage() {
+	return {
+		  "name":"PACKAGE"
+		, "developer":"DEVELOPER"
+		, "twitter":"TWITTERHANDLE"
+		, "developerSite":"SITE"
+		, "description":[
+			  "DESCRIPTION"
+		]
+		, "changelog":[
+			"VERSION","INFORMATION"
+		]
+	};
 }
 
-var query = getQuery();
-var packageID = query["p"];
+// Returns a {}'d "Release" file
+function parseReleaseFile(file) {
+	var release = {};
+	var array = file.split("\n");
+	var skip = 0;
+	for (i in array) {
+		if (skip) {
+			skip--;
+			continue;
+		}
+		var line = array[i];
+		if (!line.length) {
+			continue;
+		}
+		var pair = line.split(":", 2);
+		if (pair[0] == "MD5Sum" || pair[0] == "SHA1" || pair[0] == "SHA256") {
+			pair[1] = [];
+			i++;
+			line1 = array[i];
+			pair[1].push(line1);
+			i++;
+			line2 = array[i];
+			pair[1].push(line2);
+			skip = 2;
+		} else {
+			pair[1] = pair[1].trim();
+		}
+		release[pair[0]] = pair[1];
+	}
+	return release;
+}
+
+// Returns a {}'d "Packages" file, keys are package identifiers
+function parsePackagesFile(file) {
+	var packages = [];
+	var array = file.split("\n");
+	var pkg = {};
+	for (i in array) {
+		var line = array[i];
+		if (line.length == 0) {
+			if (pkg.Package) {
+				packages.push(pkg);
+				pkg = {};
+			}
+			continue;
+		}
+		var pair = line.split(":", 2);
+		pkg[pair[0]] = pair[1].trim();
+	}
+
+	var pkgs = {}
+	for (i in packages) {
+		var pkg = packages[i];
+		var pkgID = pkg["Package"];
+		if (!pkgs[pkgID]) {
+			pkgs[pkgID] = [];
+		}
+		delete pkg["Package"];
+		pkgs[pkgID].push(pkg);
+	}
+
+	return pkgs;
+}
+
+var debug = 1;
 
 function loaded() {
+	var query = getQuery();
+	var packageID = query["p"];
 	if (!packageID) { // Load package list
 		loadPkgListUI();
 		new microAjax("Packages", updatePkgListPage);
@@ -47,12 +137,34 @@ function loaded() {
 		var decodedFile = "depictions/"+packageID+"/description.txt";
 		getJSON({url:decodedFile,callback:updatePage,onfail:ff});
 	}
-	getJSON({url:"repo.txt",callback:updateRepoPage});
+	new microAjax("Release", releaseFileCallback);
+	new microAjax("Packages", packagesFileCallback);
 }
 
 function ff(e){ // no package found, loading dummy
-console.log(e);
-	updatePage(noPackage);
+	if (debug) console.log(e);
+	updatePage(noPackage());
+}
+
+//Repository info on "Release" file
+var release = {};
+function releaseFileCallback(file) {
+	// Using `release` global var
+	release = parseReleaseFile(file);
+//	if (debug) console.log("release:");
+//	if (debug) console.log(release);
+//	if (debug) elementPrintDescription(release);
+	updateRepoFooter();
+}
+
+//Packages list in "Packages" file
+var packages = {};
+function packagesFileCallback(file) {
+	// Using `packages` global var
+	packages = parsePackagesFile(file);
+//	if (debug) console.log("pkgs:");
+//	if (debug) console.log(packages);
+//	if (debug) elementPrintDescription(packages);
 }
 
 function updatePkgListPage(res) {
@@ -67,34 +179,41 @@ function updatePkgListPage(res) {
 			}
 		}
 	}
+//	elementPrintDescription(packages);
 
 	// Package list UI
 	// Title
 	var t = document.getElementById("packageListTitle");
-	if (t){
+	if (t) {
 		t.innerHTML = "Packages";//+pkgName;
 	}
 	// List
 	var list = document.getElementById("packageList");
-	if (list){
+	if (list) {
 		for (p in packages) {
-			var packageID = packages[p];
-			var li11 = elementFromDictionary({_type:"li"});
-			list.appendChild(li11);
-			var lnk = elementFromDictionary({_type:"a",id:packageID,href:"?p="+packages[p],innerHTML:{_type:"text",text:packages[p]}});
-			getJSON({url:"depictions/"+packageID+"/description.txt",callback:function(md){
+			var packageID = packages[p];//["Package"];
+			list.appendChild(eFD({_type:"li"
+				, children:[
+					{ _type:"a", id:packageID, href:"?p=" + packageID
+						, innerHTML:packageID
+					}
+				]
+			}));
+			getJSON({ url:"depictions/" + packageID + "/description.txt", callback:function(md) {
 				document.getElementById(md["packageID"]).innerText = md["name"];
 			}});
-			li11.appendChild(lnk);
 		};
 		var packageID = "com.uroboro.test";
-		var li11 = elementFromDictionary({_type:"li"});
-		list.appendChild(li11);
-			var lnk = elementFromDictionary({_type:"a",id:packageID,href:"?p="+packageID,innerHTML:{_type:"text",text:packageID}});
-			getJSON({url:"depictions/"+packageID+"/description.txt",callback:function(md){
-				document.getElementById(md["packageID"]).innerText = md["name"];
-			}});
-		li11.appendChild(lnk);
+		list.appendChild(eFD({_type:"li"
+			, children:[
+				{ _type:"a", id:packageID, href:"?p=" + packageID
+					, innerHTML:packageID
+				}
+			]
+		}));
+		getJSON({ url:"depictions/" + packageID + "/description.txt", callback:function(md) {
+			document.getElementById(md["packageID"]).innerText = md["name"];
+		}});
 	}
 }
 
@@ -102,38 +221,42 @@ function updatePage(md) {
 //elementPrintDescription(md);
 
 	var devName = md["developer"];
-
+	var pkgID = md["packageID"];
 	var pkgName = md["name"];
-	window.document.title = pkgName+" by "+devName;
+	window.document.title = pkgName + " by " + devName;
 
 	// Package UI
 	// Description
 	var desc = document.getElementById("description");
-	if (desc){
-		for (d in md["description"]) {
-			var div = document.createElement('p');
-			div.innerHTML = md["description"][d];
-			desc.appendChild(div);
-		};
+	if (desc) {
+		var description = md["description"];
+		for (d in description) {
+			desc.appendChild(eFD({ _type:"p"
+				, innerHTML:description[d]
+			}));
+		}
 	}
 	// Screenshots link
 	var sh = document.getElementById("screenshots");
 	if (sh) {
 		if (md["screenshotCount"] > 0 ) {
-			sh.appendChild(elementFromDictionary({_type:"a",href:"?p="+packageID+"&screenshots=1",innerHTML:{_type:"text",text:"Screenshots"}}));
+			sh.appendChild(eFD({_type:"a", href:"?p=" + pkgID + "&screenshots=1"
+				, innerHTML:"Screenshots"
+			}));
 		} else {
 			elementRemoveFromParent(sh);
 		}
 	}
 	// Changelog
 	var desc = document.getElementById("changelog");
-	if (desc){
+	if (desc) {
 		var b = 1;
-		for (d in md["changelog"]) {
-			var div = document.createElement('p');
+		var changelog = md["changelog"];
+		for (d in changelog) {
 			var B = b ? " :" : "";
-			div.innerHTML = md["changelog"][d] + B;
-			desc.appendChild(div);
+			desc.appendChild(eFD({ _type:"p"
+				, innerHTML:changelog[d] + B
+			}));
 			b = !b;
 		};
 	}
@@ -142,95 +265,122 @@ function updatePage(md) {
 	var tw = document.getElementById("twitter");
 	if (tw) {
 		var twName = md["twitter"];
-		tw.appendChild(elementFromDictionary({_type:"a",href:"https://twitter.com/"+twName,innerHTML:{_type:"text",text:"@"+twName+" on Twitter"}}));
-		
+		tw.appendChild(eFD({ _type:"a", href:"https://twitter.com/" + twName
+			, innerHTML:"@" + twName + " on Twitter"
+		}));
 	}
 	// Site
 	var site = document.getElementById("developerSite");
 	if (site) {
-		site.appendChild(elementFromDictionary({_type:"a",href:md["developerSite"],innerHTML:{_type:"text",text:devName+"'s page"}}));
+		var devSite = md["developerSite"];
+		site.appendChild(eFD({_type:"a", href:devSite
+			, innerHTML:devName + "'s page"
+		}));
 	}
 
 	// Screenshots UI
 	// Title
 	var sst = document.getElementById("screenshotListTitle");
-	if (sst){
-		sst.innerHTML = "Screenshots of "+pkgName;
+	if (sst) {
+		sst.innerHTML = "Screenshots of " + pkgName;
 	}
 	// Screenshot list
 	var ssl = document.getElementById("screenshotList");
-	if (ssl){
+	if (ssl) {
 		for (var d = 0; d < md["screenshotCount"]; d++) {
-			var imgPath = "depictions/"+packageID+"/screenshots/"+d+".jpg";
-			var e1 = elementFromDictionary({_type:"p"});
-			var e2 = elementFromDictionary({_type:"a",href:imgPath});
-			var e3 = elementFromDictionary({_type:"img",src:imgPath});
-			e1.appendChild(e2).appendChild(e3);
-			ssl.appendChild(e1);
+			var imgPath = "depictions/" + pkgID + "/screenshots/" + d + ".jpg";
+			ssl.appendChild(eFD({ _type:"p"
+				, children:[
+					{ _type:"a", href:imgPath
+						, children:[
+							{ _type:"img", src:imgPath }
+						]
+					}
+				]
+			}));
 		};
 	}
 }
 
-function updateRepoPage(rd) {
+function updateRepoFooter() {
 	var repo = document.getElementById("repo");
 	if (repo) {
-		repo.appendChild(elementFromDictionary({_type:"a",href:rd["url"],innerHTML:{_type:"text",text:rd["name"]}}));
-		repo.appendChild(elementFromDictionary({_type:"text",text:" | "}));
-		repo.appendChild(elementFromDictionary({_type:"a",href:"cydia://url/https://cydia.saurik.com/api/share#?source="+rd["url"],innerHTML:{_type:"text",text:"Add to Cydia"}}));
+		var txt = release["Origin"];
+		repo.appendChild(eFD({ _type:"a", href:getWindowBaseHref()
+			, innerHTML:txt
+		}));
+		repo.appendChild(eFD({ _type:"text", text:" | " }));
+		repo.appendChild(eFD({ _type:"a", href:"cydia://url/https://cydia.saurik.com/api/share#?source=" + getWindowBaseHref()
+			, innerHTML:"Add to Cydia"
+		}));
+
+		var iOS = /iPad|iPhone|iPod/.test( navigator.userAgent );
+		if (iOS) {
+			repo.appendChild(eFD({ _type:"p"
+				, innerHTML:"I'm on iOS!"
+			}));
+		} else {
+			repo.appendChild(eFD({ _type:"p"
+				, innerHTML:"I'm not on iOS!"
+			}));
+		}
 	}
 }
 
 function loadPkgUI() {
-	var h1 = elementFromDictionary({_type:"h2",innerHTML:{_type:"text",text:"Description"}});
-	document.body.appendChild(h1);
-	var ul1 = elementFromDictionary({_type:"ul"});
-	var li11 = elementFromDictionary({_type:"li",id:"description"});
-	var li12 = elementFromDictionary({_type:"li",id:"screenshots"});
-	ul1.appendChild(li11);
-	ul1.appendChild(li12);
-	document.body.appendChild(ul1);
+	// Description section
+	document.body.appendChild(eFD({ _type:"h2"
+		, innerHTML:"Description"
+	}));
+	document.body.appendChild(eFD({ _type:"ul"
+		, children:[
+			  { _type:"li", id:"description" }
+			, { _type:"li", id:"screenshots" }
+		]
+	}));
 
-	var h2 = elementFromDictionary({_type:"h2",innerHTML:{_type:"text",text:"Changelog"}});
-	document.body.appendChild(h2);
-	var ul2 = elementFromDictionary({_type:"ul"});
-	var li21 = elementFromDictionary({_type:"li",id:"changelog"});
-	ul2.appendChild(li21);
-	document.body.appendChild(ul2);
+	// Changelog section
+	document.body.appendChild(eFD({ _type:"h2"
+		, innerHTML:"Changelog"
+	}));
+	document.body.appendChild(eFD({ _type:"ul"
+		, children:[
+			{ _type:"li", id:"changelog" }
+		]
+	}));
 
-	var h3 = elementFromDictionary({_type:"h2",innerHTML:{_type:"text",text:"Developer"}});
-	document.body.appendChild(h3);
-	var ul3 = elementFromDictionary({_type:"ul"});
-	var li31 = elementFromDictionary({_type:"li",id:"twitter"});
-	var li32 = elementFromDictionary({_type:"li",id:"developerSite"});
-	ul3.appendChild(li31);
-	ul3.appendChild(li32);
-	document.body.appendChild(ul3);
+	// Developer section
+	document.body.appendChild(eFD({ _type:"h2"
+		, innerHTML:"Developer"
+	}));
+	document.body.appendChild(eFD({ _type:"ul"
+		, children:[
+			  { _type:"li", id:"twitter" }
+			, { _type:"li", id:"developerSite" }
+		]
+	}));
 
-	var p = elementFromDictionary({_type:"p",id:"repo"});
-	document.body.appendChild(p);
+	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
 }
 
 function loadScrnShtUI() {
-	var h1 = elementFromDictionary({_type:"h2",id:"screenshotListTitle",innerHTML:{_type:"text",text:"Screenshots of "}});
-	document.body.appendChild(h1);
-	var ul1 = elementFromDictionary({_type:"ul"});
-	var li11 = elementFromDictionary({_type:"li",id:"screenshotList"});
-	ul1.appendChild(li11);
-	document.body.appendChild(ul1);
-
-	var p = elementFromDictionary({_type:"p",id:"repo"});
-	document.body.appendChild(p);
+	document.body.appendChild(eFD({ _type:"h2", id:"screenshotListTitle"
+		, innerHTML:"Screenshots of "
+	}));
+	document.body.appendChild(eFD({ _type:"ul"
+		, innerHTML:{ _type:"li", id:"screenshotList" }
+	}));
+	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
 }
 
 function loadPkgListUI() {
-	var h1 = elementFromDictionary({_type:"h2",id:"packageListTitle",innerHTML:{_type:"text",text:"Packages"}});
-	document.body.appendChild(h1);
-	var ul1 = elementFromDictionary({_type:"ul",id:"packageList"});
-	document.body.appendChild(ul1);
-
-	var p = elementFromDictionary({_type:"p",id:"repo"});
-	document.body.appendChild(p);
+	document.body.appendChild(eFD({ _type:"h2", id:"packageListTitle"
+		, innerHTML:"Packages"
+	}));
+	document.body.appendChild(eFD({ _type:"ul", id:"packageList" }));
+	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
 }
+
 </script>
 </head>
 <body onload="loaded()">

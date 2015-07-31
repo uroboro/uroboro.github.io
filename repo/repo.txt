@@ -1,4 +1,0 @@
-{
-	"name":"uroboro's repo"
-	, "url":"http://uroboro.github.io/repo"
-}

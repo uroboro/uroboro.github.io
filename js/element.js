@@ -1,3 +1,4 @@
+var eFD = elementFromDictionary;
 function elementFromDictionary(dict) {
 	if (!dict) {
 		return undefined;
@@ -16,8 +17,11 @@ function elementFromDictionary(dict) {
 		if (key == "_type") {
 			continue;
 		}
+		if (dict[key] == null) {
+			continue;
+		}
 		if (key == "innerHTML") {
-			obj.appendChild(elementFromDictionary(dict[key]));
+			obj.innerHTML = dict[key];
 			continue;
 		}
 		if (key == "children") {
