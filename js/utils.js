@@ -1,13 +1,18 @@
 //probably my greatest js achievement
 function getQuery() {
 	var url = window.location.href;
-	var q = url.substring(url.indexOf('?')+1, url.length);
-	var qs = q.split('&');
 	var Q = {};
-	for (i in qs) {
-		var a = qs[i].split('=');
-		Q[a[0]] = a[1];
+	var c = 0;
+	if (url.indexOf('?') > 0) {
+		var q = url.substring(url.indexOf('?')+1, url.length);
+		var qs = q.split('&');
+		for (i in qs) {
+			var a = qs[i].split('=');
+			Q[a[0]] = a[1];
+			c++;
+		}
 	}
+	Q.__defineGetter__("length", function() { return c; });
 	return Q;
 }
 

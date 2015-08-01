@@ -95,7 +95,7 @@ function parsePackagesFile(file) {
 	var pkg = {};
 	for (i in array) {
 		var line = array[i];
-		if (line.length == 0) {
+		if (line.length <= 1) {
 			if (pkg.Package) {
 				packages.push(pkg);
 				pkg = {};
@@ -124,21 +124,24 @@ var debug = 1;
 
 function loaded() {
 	var query = getQuery();
-	var packageID = query["p"];
-	if (!packageID) { // Load package list
-		loadPkgListUI();
-		new microAjax("Packages", updatePkgListPage);
-	} else { // there's a package id in the url
-		if (query["screenshots"] == 1) {
-			loadScrnShtUI();
-		} else {
-			loadPkgUI();
+	switch (query.length) {
+	case 0: // Load package list
+		loadPackageListUI();
+		break;
+
+	case 1: // There's a package ID in the url
+		loadPackageUI();
+		break;
+
+	default:
+		if (query["screenshots"]) {
+			loadScreenshotUI();
 		}
-		var decodedFile = "depictions/"+packageID+"/description.txt";
-		getJSON({url:decodedFile,callback:updatePage,onfail:ff});
+		if (query["changelog"]) {
+			loadChangelogUI();
+		}
 	}
 	new microAjax("Release", releaseFileCallback);
-	new microAjax("Packages", packagesFileCallback);
 }
 
 function ff(e){ // no package found, loading dummy
@@ -154,7 +157,8 @@ function releaseFileCallback(file) {
 //	if (debug) console.log("release:");
 //	if (debug) console.log(release);
 //	if (debug) elementPrintDescription(release);
-	updateRepoFooter();
+	updateFooter();
+	window.document.title = release["Origin"];
 }
 
 //Packages list in "Packages" file
@@ -167,142 +171,8 @@ function packagesFileCallback(file) {
 //	if (debug) elementPrintDescription(packages);
 }
 
-function updatePkgListPage(res) {
-	var array = res.split("\n").sort();
-	var packages = [];
-	for (i in array) {
-		var obj = array[i];
-		if (obj.indexOf("Package: ") > -1) {
-			var pkgID = obj.replace("Package: ","");
-			if (packages.indexOf(pkgID) == -1 ) {
-				packages.push(pkgID);
-			}
-		}
-	}
-//	elementPrintDescription(packages);
 
-	// Package list UI
-	// Title
-	var t = document.getElementById("packageListTitle");
-	if (t) {
-		t.innerHTML = "Packages";//+pkgName;
-	}
-	// List
-	var list = document.getElementById("packageList");
-	if (list) {
-		for (p in packages) {
-			var packageID = packages[p];//["Package"];
-			list.appendChild(eFD({_type:"li"
-				, children:[
-					{ _type:"a", id:packageID, href:"?p=" + packageID
-						, innerHTML:packageID
-					}
-				]
-			}));
-			getJSON({ url:"depictions/" + packageID + "/description.txt", callback:function(md) {
-				document.getElementById(md["packageID"]).innerText = md["name"];
-			}});
-		};
-		var packageID = "com.uroboro.test";
-		list.appendChild(eFD({_type:"li"
-			, children:[
-				{ _type:"a", id:packageID, href:"?p=" + packageID
-					, innerHTML:packageID
-				}
-			]
-		}));
-		getJSON({ url:"depictions/" + packageID + "/description.txt", callback:function(md) {
-			document.getElementById(md["packageID"]).innerText = md["name"];
-		}});
-	}
-}
-
-function updatePage(md) {
-//elementPrintDescription(md);
-
-	var devName = md["developer"];
-	var pkgID = md["packageID"];
-	var pkgName = md["name"];
-	window.document.title = pkgName + " by " + devName;
-
-	// Package UI
-	// Description
-	var desc = document.getElementById("description");
-	if (desc) {
-		var description = md["description"];
-		for (d in description) {
-			desc.appendChild(eFD({ _type:"p"
-				, innerHTML:description[d]
-			}));
-		}
-	}
-	// Screenshots link
-	var sh = document.getElementById("screenshots");
-	if (sh) {
-		if (md["screenshotCount"] > 0 ) {
-			sh.appendChild(eFD({_type:"a", href:"?p=" + pkgID + "&screenshots=1"
-				, innerHTML:"Screenshots"
-			}));
-		} else {
-			elementRemoveFromParent(sh);
-		}
-	}
-	// Changelog
-	var desc = document.getElementById("changelog");
-	if (desc) {
-		var b = 1;
-		var changelog = md["changelog"];
-		for (d in changelog) {
-			var B = b ? " :" : "";
-			desc.appendChild(eFD({ _type:"p"
-				, innerHTML:changelog[d] + B
-			}));
-			b = !b;
-		};
-	}
-	// Developer info
-	// Twitter
-	var tw = document.getElementById("twitter");
-	if (tw) {
-		var twName = md["twitter"];
-		tw.appendChild(eFD({ _type:"a", href:"https://twitter.com/" + twName
-			, innerHTML:"@" + twName + " on Twitter"
-		}));
-	}
-	// Site
-	var site = document.getElementById("developerSite");
-	if (site) {
-		var devSite = md["developerSite"];
-		site.appendChild(eFD({_type:"a", href:devSite
-			, innerHTML:devName + "'s page"
-		}));
-	}
-
-	// Screenshots UI
-	// Title
-	var sst = document.getElementById("screenshotListTitle");
-	if (sst) {
-		sst.innerHTML = "Screenshots of " + pkgName;
-	}
-	// Screenshot list
-	var ssl = document.getElementById("screenshotList");
-	if (ssl) {
-		for (var d = 0; d < md["screenshotCount"]; d++) {
-			var imgPath = "depictions/" + pkgID + "/screenshots/" + d + ".jpg";
-			ssl.appendChild(eFD({ _type:"p"
-				, children:[
-					{ _type:"a", href:imgPath
-						, children:[
-							{ _type:"img", src:imgPath }
-						]
-					}
-				]
-			}));
-		};
-	}
-}
-
-function updateRepoFooter() {
+function updateFooter() {
 	var repo = document.getElementById("repo");
 	if (repo) {
 		var txt = release["Origin"];
@@ -327,7 +197,74 @@ function updateRepoFooter() {
 	}
 }
 
-function loadPkgUI() {
+
+function loadPackageListUI() {
+	document.body.appendChild(eFD({ _type:"h2", id:"packageListTitle"
+		, innerHTML:"Packages"
+	}));
+	document.body.appendChild(eFD({ _type:"ul", id:"packageList" }));
+	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
+
+	new microAjax("Packages", updatePackageListPage);
+}
+
+function updatePackageListPage(file) {
+	packagesFileCallback(file);
+	var array = file.split("\n").sort();
+	var packages = [];
+	for (i in array) {
+		var obj = array[i];
+		if (obj.indexOf("Package: ") > -1) {
+			var pkgID = obj.replace("Package: ","");
+			if (packages.indexOf(pkgID) == -1 ) {
+				packages.push(pkgID);
+			}
+		}
+	}
+//	elementPrintDescription(packages);
+
+	window.document.title = release["Origin"];
+
+	// Package list UI
+	// Title
+	var t = document.getElementById("packageListTitle");
+	if (t) {
+		t.innerHTML = "Packages";//+pkgName;
+	}
+	// List
+	var list = document.getElementById("packageList");
+	if (list) {
+		for (p in packages) {
+			var packageID = packages[p];//["Package"];
+			list.appendChild(eFD({ _type:"li"
+				, children:[
+					{ _type:"a", id:packageID, href:"?p=" + packageID
+						, innerHTML:packageID
+					}
+				]
+			}));
+			getJSON({ url:"depictions/" + packageID + "/description.txt", callback:function(userInfo) {
+				var e = document.getElementById(userInfo["packageID"]);
+				//document.getElementById(userInfo["packageID"]).innerText = userInfo["name"];
+				console.log(e + "~" + userInfo["packageID"] + ":" + userInfo["name"]);
+			}});
+		};
+		var packageID = "com.uroboro.test";
+		list.appendChild(eFD({_type:"li"
+			, children:[
+				{ _type:"a", id:packageID, href:"?p=" + packageID
+					, innerHTML:packageID
+				}
+			]
+		}));
+		getJSON({ url:"depictions/" + packageID + "/description.txt", callback:function(userInfo) {
+			document.getElementById(userInfo["packageID"]).innerText = userInfo["name"];
+		}});
+	}
+}
+
+
+function loadPackageUI() {
 	// Description section
 	document.body.appendChild(eFD({ _type:"h2"
 		, innerHTML:"Description"
@@ -336,16 +273,7 @@ function loadPkgUI() {
 		, children:[
 			  { _type:"li", id:"description" }
 			, { _type:"li", id:"screenshots" }
-		]
-	}));
-
-	// Changelog section
-	document.body.appendChild(eFD({ _type:"h2"
-		, innerHTML:"Changelog"
-	}));
-	document.body.appendChild(eFD({ _type:"ul"
-		, children:[
-			{ _type:"li", id:"changelog" }
+			, { _type:"li", id:"changelog" }
 		]
 	}));
 
@@ -361,26 +289,166 @@ function loadPkgUI() {
 	}));
 
 	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
+
+	var query = getQuery();
+	var packageID = query["p"];
+	var decodedFile = "depictions/" + packageID + "/description.txt";
+	getJSON({ url:decodedFile, callback:updatePackageUI, onfail:ff });
 }
 
-function loadScrnShtUI() {
+function updatePackageUI(userInfo) {
+//elementPrintDescription(userInfo);
+
+	var devName = userInfo["developer"];
+	var pkgID = userInfo["packageID"];
+	var pkgName = userInfo["name"];
+
+	window.document.title = pkgName + " by " + devName;
+
+	// Package UI
+	// Description
+	var desc = document.getElementById("description");
+	if (desc) {
+		var description = userInfo["description"];
+		for (d in description) {
+			desc.appendChild(eFD({ _type:"p"
+				, innerHTML:description[d]
+			}));
+		}
+	}
+	// Screenshots link
+	var shlnk = document.getElementById("screenshots");
+	if (shlnk) {
+		var screenshotCount = userInfo["screenshotCount"];
+		if (screenshotCount > 0 ) {
+			shlnk.appendChild(eFD({_type:"a", href:"?p=" + pkgID + "&screenshots=1"
+				, innerHTML:"Screenshots"
+			}));
+		} else {
+			elementRemoveFromParent(shlnk);
+		}
+	}
+	// Changelog link
+	var cllnk = document.getElementById("changelog");
+	if (cllnk) {
+		cllnk.appendChild(eFD({_type:"a", href:"?p=" + pkgID + "&changelog=1"
+			, innerHTML:"Changelog"
+		}));
+	}
+
+	// Developer info
+	// Twitter
+	var tw = document.getElementById("twitter");
+	if (tw) {
+		var twName = userInfo["twitter"];
+		tw.appendChild(eFD({ _type:"a", href:"https://twitter.com/" + twName
+			, innerHTML:"@" + twName + " on Twitter"
+		}));
+	}
+	// Site
+	var site = document.getElementById("developerSite");
+	if (site) {
+		var devSite = userInfo["developerSite"];
+		site.appendChild(eFD({_type:"a", href:devSite
+			, innerHTML:devName + "'s page"
+		}));
+	}
+}
+
+
+function loadScreenshotUI() {
 	document.body.appendChild(eFD({ _type:"h2", id:"screenshotListTitle"
 		, innerHTML:"Screenshots of "
 	}));
 	document.body.appendChild(eFD({ _type:"ul"
-		, innerHTML:{ _type:"li", id:"screenshotList" }
+		, children:[
+			{ _type:"li", id:"screenshotList" }
+		]
 	}));
 	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
+
+	var query = getQuery();
+	var packageID = query["p"];
+	var decodedFile = "depictions/" + packageID + "/description.txt";
+	getJSON({ url:decodedFile, callback:updateScreenshotUI, onfail:ff });
 }
 
-function loadPkgListUI() {
-	document.body.appendChild(eFD({ _type:"h2", id:"packageListTitle"
-		, innerHTML:"Packages"
+function updateScreenshotUI(userInfo) {
+//elementPrintDescription(userInfo);
+
+	var devName = userInfo["developer"];
+	var pkgID = userInfo["packageID"];
+	var pkgName = userInfo["name"];
+	window.document.title = pkgName + " by " + devName;
+
+	// Title
+	var title = document.getElementById("screenshotListTitle");
+	if (title) {
+		title.innerHTML = "Screenshots of " + pkgName;
+	}
+	// Screenshot list
+	var list = document.getElementById("screenshotList");
+	if (list) {
+		for (var d = 0; d < userInfo["screenshotCount"]; d++) {
+			var imgPath = "depictions/" + pkgID + "/screenshots/" + d + ".jpg";
+			list.appendChild(eFD({ _type:"p"
+				, children:[
+					{ _type:"a", href:imgPath
+						, children:[
+							{ _type:"img", src:imgPath }
+						]
+					}
+				]
+			}));
+		};
+	}
+}
+
+
+function loadChangelogUI() {
+	document.body.appendChild(eFD({ _type:"h2", id:"changelogListTitle"
+		, innerHTML:"Changelog of "
 	}));
-	document.body.appendChild(eFD({ _type:"ul", id:"packageList" }));
+	document.body.appendChild(eFD({ _type:"ul"
+		, children:[
+			{ _type:"li", id:"changelogList" }
+		]
+	}));
 	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
+
+	var query = getQuery();
+	var packageID = query["p"];
+	var decodedFile = "depictions/" + packageID + "/description.txt";
+	getJSON({ url:decodedFile, callback:updateChangelogUI, onfail:ff });
 }
 
+function updateChangelogUI(userInfo) {
+//elementPrintDescription(userInfo);
+
+	var devName = userInfo["developer"];
+	var pkgID = userInfo["packageID"];
+	var pkgName = userInfo["name"];
+	window.document.title = pkgName + " by " + devName;
+
+	// Title
+	var title = document.getElementById("changelogListTitle");
+	if (title) {
+		title.innerHTML = "Changelog of " + pkgName;
+	}
+	// Changelog list
+	var list = document.getElementById("changelogList");
+	if (list) {
+		var b = 1;
+		var changelog = userInfo["changelog"];
+		for (d in changelog) {
+			var B = b ? " :" : "";
+			list.appendChild(eFD({ _type:"p"
+				, innerHTML:changelog[d] + B
+			}));
+			b = !b;
+		};
+	}
+}
 </script>
 </head>
 <body onload="loaded()">
