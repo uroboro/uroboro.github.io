@@ -244,9 +244,9 @@ function updatePackageListPage(file) {
 				]
 			}));
 			getJSON({ url:"depictions/" + packageID + "/description.txt", callback:function(userInfo) {
-				var e = document.getElementById(userInfo["packageID"]);
-				//document.getElementById(userInfo["packageID"]).innerText = userInfo["name"];
-				console.log(e + "~" + userInfo["packageID"] + ":" + userInfo["name"]);
+				//var e = document.getElementById(userInfo["packageID"]);
+				document.getElementById(userInfo["packageID"]).innerText = userInfo["name"];
+				//console.log(e + "~" + userInfo["packageID"] + ":" + userInfo["name"]);
 			}});
 		};
 		var packageID = "com.uroboro.test";
