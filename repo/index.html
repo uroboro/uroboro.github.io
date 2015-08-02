@@ -186,8 +186,9 @@ function updateFooter() {
 
 		var iOS = /iPad|iPhone|iPod/.test( navigator.userAgent );
 		if (iOS) {
+			var ssdya = /Cydia/.test( navigator.userAgent );
 			repo.appendChild(eFD({ _type:"p"
-				, innerHTML:"I'm on iOS!"
+				, innerHTML:(ssdya)?"I'm on Cydia!'":"I'm on iOS!"
 			}));
 		} else {
 			repo.appendChild(eFD({ _type:"p"
@@ -449,6 +450,7 @@ function updateChangelogUI(userInfo) {
 		};
 	}
 }
+
 </script>
 </head>
 <body onload="loaded()">
