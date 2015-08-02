@@ -5,7 +5,7 @@ Section: Addons (Activator)
 Maintainer: uroboro <uroboro845@gmail.com>
 Depends: mobilesubstrate, libactivator
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.activator.listener.swipefoldershortcut_0.0.1-11_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.activator.listener.swipefoldershortcut_0.0.1-11_iphoneos-arm.deb
 Size: 5876
 Installed-Size: 24
 MD5sum: 09b4c8220153c0dd5ba828e20f1404f3
@@ -20,7 +20,7 @@ Section: Addons (Activator)
 Maintainer: uroboro <uroboro845@gmail.com>
 Depends: mobilesubstrate, libactivator
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.activator.listener.swipefoldershortcut_0.0.1-12_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.activator.listener.swipefoldershortcut_0.0.1-12_iphoneos-arm.deb
 Size: 5904
 Installed-Size: 24
 MD5sum: 452175b2ffa06af556021d8a33bb97a6
@@ -36,7 +36,7 @@ Section: Addons (Activator)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: mobilesubstrate, libactivator
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.activator.listener.wol_0.1-3_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.activator.listener.wol_0.1-3_iphoneos-arm.deb
 Size: 10102
 Installed-Size: 76
 MD5sum: 695fd47916fe92de22106172b6e4b8cb
@@ -51,7 +51,7 @@ Section: Addons (Activator)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: mobilesubstrate, libactivator
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.activator.listener.wol_0.1-4_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.activator.listener.wol_0.1-4_iphoneos-arm.deb
 Size: 10098
 Installed-Size: 76
 MD5sum: 36bbef8531cd09d4c0259ca02096a81e
@@ -66,7 +66,7 @@ Section: Addons (Activator)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: mobilesubstrate, libactivator
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.activator.listener.wol_0.1-6_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.activator.listener.wol_0.1-6_iphoneos-arm.deb
 Size: 10052
 Installed-Size: 76
 MD5sum: 7812582d092584ac249753367d66c29e
@@ -82,7 +82,7 @@ Section: Addons (Activator)
 Maintainer: uroboro <uroboro845@gmail.com>
 Depends: mobilesubstrate, libactivator
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.event.startup_0.0.1-2_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.event.startup_0.0.1-2_iphoneos-arm.deb
 Size: 4520
 Installed-Size: 20
 MD5sum: b0b03b2c60fb21621cde462916b19d5f
@@ -97,7 +97,7 @@ Section: Addons (Activator)
 Maintainer: uroboro <uroboro845@gmail.com>
 Depends: mobilesubstrate, libactivator
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.eventdisplay_0.1-15_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.eventdisplay_0.1-15_iphoneos-arm.deb
 Size: 7186
 Installed-Size: 28
 MD5sum: 84978b19cf2fd8809e9e4db07b43f893
@@ -111,7 +111,7 @@ Section: Addons (NotificationCenter)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: firmware (>= 5.0), firmware (<< 7.0), com.saurik.substrate.safemode, com.chpwn.weeloader, org.thebigboss.customwidgeticons, com.arichardson.weepreferenceloader, com.a3tweaks.flipswitch (>= 1.0.3)
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.flipnc_0.0.2-166_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.flipnc_0.0.2-166_iphoneos-arm.deb
 Size: 50944
 Installed-Size: 132
 MD5sum: b82d21de226484c095416ab45efda1ce
@@ -125,7 +125,7 @@ Section: Addons (NotificationCenter)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: firmware (>= 5.0), com.saurik.substrate.safemode, com.chpwn.weeloader, com.a3tweaks.flipswitch (>= 1.0.3)
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.flipnc_0.0.3-1_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.flipnc_0.0.3-1_iphoneos-arm.deb
 Size: 50734
 Installed-Size: 132
 MD5sum: e5c5de50e8da38591d0464bab084f543
@@ -139,7 +139,7 @@ Section: System
 Maintainer: uroboro <uroboro845@gmail.com>
 Depends: com.uroboro.library.uircclient, ngircd
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.ircyslog_0.0.1-54_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.ircyslog_0.0.1-54_iphoneos-arm.deb
 Size: 21238
 Installed-Size: 148
 MD5sum: 65d6b1fb21e4f1429739ac02b0a216d3
@@ -153,7 +153,7 @@ Version: 0.0.1-15
 Section: System
 Maintainer: uroboro <uroboro845@gmail.com>
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.library.uircclient_0.0.1-15_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.library.uircclient_0.0.1-15_iphoneos-arm.deb
 Size: 21504
 Installed-Size: 136
 MD5sum: 9040a4d14fbf6a07533f101dcc36aac6
@@ -166,7 +166,7 @@ Version: 0.0.1-16
 Section: System
 Maintainer: uroboro <uroboro845@gmail.com>
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.library.uircclient_0.0.1-16_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.library.uircclient_0.0.1-16_iphoneos-arm.deb
 Size: 21508
 Installed-Size: 136
 MD5sum: 031e4f4b2e148805ff01097f3772e2ca
@@ -180,7 +180,7 @@ Section: System
 Maintainer: uroboro <uroboro845@gmail.com>
 Depends: firmware (>= 1.0)
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.library.uircclient_0.0.1-19_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.library.uircclient_0.0.1-19_iphoneos-arm.deb
 Size: 21556
 Installed-Size: 136
 MD5sum: a6e8a175b84f9ebb0a23278dba0cb4b9
@@ -195,7 +195,7 @@ Section: Addons (NotificationCenter)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: firmware (>= 5.0), firmware (<< 7.0), com.saurik.substrate.safemode, com.chpwn.weeloader, org.thebigboss.customwidgeticons, com.arichardson.weepreferenceloader
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.ncbrightslider_0.0.1-33_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.ncbrightslider_0.0.1-33_iphoneos-arm.deb
 Size: 7046
 Installed-Size: 32
 MD5sum: e8b8f5885e61dcc009ca28a406a148b9
@@ -209,7 +209,7 @@ Section: Tweaks
 Maintainer: uroboro<uroboro.845@gmail.com>
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.notificationexplorer_0.0.1-69_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.notificationexplorer_0.0.1-69_iphoneos-arm.deb
 Size: 6868
 Installed-Size: 24
 MD5sum: dc679c05e176fd3f7f0182e4ed9aabab
@@ -223,7 +223,7 @@ Section: Tweaks
 Maintainer: uroboro<uroboro.845@gmail.com>
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.notificationexplorer_0.0.1-70_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.notificationexplorer_0.0.1-70_iphoneos-arm.deb
 Size: 11442
 Installed-Size: 88
 MD5sum: 355afd3345263afc85950b8ae67f94af
@@ -237,7 +237,7 @@ Section: Tweaks
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.notificationexplorer_0.0.1-71_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.notificationexplorer_0.0.1-71_iphoneos-arm.deb
 Size: 11416
 Installed-Size: 88
 MD5sum: 1b986b8ce735fef84f3fddccf9670706
@@ -251,7 +251,7 @@ Section: Tweaks
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.notificationexplorer_0.0.1-72_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.notificationexplorer_0.0.1-72_iphoneos-arm.deb
 Size: 12474
 Installed-Size: 88
 MD5sum: eb8e9065dd8012b7d0fc581ac4e744f2
@@ -265,7 +265,7 @@ Section: Tweaks
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.notificationexplorer_0.0.1-73_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.notificationexplorer_0.0.1-73_iphoneos-arm.deb
 Size: 12456
 Installed-Size: 88
 MD5sum: 89e6a757f6e261b323bd5c38386ea533
@@ -279,7 +279,7 @@ Section: Tweaks
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.notificationexplorer_0.0.1-74_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.notificationexplorer_0.0.1-74_iphoneos-arm.deb
 Size: 12474
 Installed-Size: 88
 MD5sum: e61742a52a0cf2dd19c8f78fb7425c09
@@ -294,7 +294,7 @@ Section: Tweaks
 Maintainer: uroboro <uroboro845@gmail.com>
 Depends: mobilesubstrate
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.tweak.nopromotions_0.0.1-3_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.tweak.nopromotions_0.0.1-3_iphoneos-arm.deb
 Size: 3666
 Installed-Size: 72
 MD5sum: 5b31bfca08475446ab90c3b29cb7f7a0
@@ -310,7 +310,7 @@ Section: Addons (Activator)
 Maintainer: uroboro <uroboro.845@gmail.com>
 Depends: mobilesubstrate, libactivator
 Architecture: iphoneos-arm
-Filename: ./packages/com.uroboro.unlockevents_0.0.1-32_iphoneos-arm.deb
+Filename: ./pkgfiles/com.uroboro.unlockevents_0.0.1-32_iphoneos-arm.deb
 Size: 8694
 Installed-Size: 72
 MD5sum: 7298b075c83761aefc75f80fafcc7284
