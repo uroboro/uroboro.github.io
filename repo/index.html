@@ -123,6 +123,7 @@ function parsePackagesFile(file) {
 var debug = 1;
 
 function loaded() {
+	new microAjax("Release", releaseFileCallback);
 	var query = getQuery();
 	switch (query.length) {
 	case 0: // Load package list
@@ -141,7 +142,7 @@ function loaded() {
 			loadChangelogUI();
 		}
 	}
-	new microAjax("Release", releaseFileCallback);
+	viewerCallback();
 }
 
 function ff(e){ // no package found, loading dummy
@@ -171,39 +172,36 @@ function packagesFileCallback(file) {
 //	if (debug) elementPrintDescription(packages);
 }
 
-
-function updateFooter() {
-	var repo = document.getElementById("repo");
-	if (repo) {
-		var txt = release["Origin"];
-		repo.appendChild(eFD({ _type:"a", href:getWindowBaseHref()
-			, innerHTML:txt
-		}));
-		repo.appendChild(eFD({ _type:"text", text:" | " }));
-		repo.appendChild(eFD({ _type:"a", href:"cydia://url/https://cydia.saurik.com/api/share#?source=" + getWindowBaseHref()
-			, innerHTML:"Add to Cydia"
-		}));
-
-		var iOS = /iPad|iPhone|iPod/.test( navigator.userAgent );
-		if (iOS) {
-			var ssdya = /Cydia/.test( navigator.userAgent );
-			repo.appendChild(eFD({ _type:"p"
-				, innerHTML:(ssdya)?"I'm on Cydia!'":"I'm on iOS!"
-			}));
-		} else {
-			repo.appendChild(eFD({ _type:"p"
-				, innerHTML:"I'm not on iOS!"
-			}));
-		}
-	}
+var viewer = {};
+function viewerCallback() {
+	viewer.__defineGetter__("ios", function () {
+		return /iPad|iPhone|iPod/.test( navigator.userAgent );
+	});
+	viewer.__defineGetter__("cydia", function () {
+		return /Cydia/.test( navigator.userAgent );
+	});
 }
 
+function shareLink(packageID) {
+	var beginning = (viewer.ios) ? "cydia://url/" : "";
+	var source = "https://cydia.saurik.com/api/share#?source=" + getWindowBaseHref();
+	var pkg = "&package=" + packageID;
+	return beginning + source + (packageID ? pkg : "");
+}
 
+// List UI
 function loadPackageListUI() {
 	document.body.appendChild(eFD({ _type:"h2", id:"packageListTitle"
 		, innerHTML:"Packages"
 	}));
 	document.body.appendChild(eFD({ _type:"ul", id:"packageList" }));
+
+	// Repository section
+	document.body.appendChild(eFD({ _type:"h2"
+		, innerHTML:"Repository"
+	}));
+	document.body.appendChild(eFD({ _type:"ul", id:"repositoryList" }));
+
 	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
 
 	new microAjax("Packages", updatePackageListPage);
@@ -230,13 +228,13 @@ function updatePackageListPage(file) {
 	// Title
 	var t = document.getElementById("packageListTitle");
 	if (t) {
-		t.innerHTML = "Packages";//+pkgName;
+		t.innerHTML = "Packages";
 	}
 	// List
 	var list = document.getElementById("packageList");
 	if (list) {
 		for (p in packages) {
-			var packageID = packages[p];//["Package"];
+			var packageID = packages[p];
 			list.appendChild(eFD({ _type:"li"
 				, children:[
 					{ _type:"a", id:packageID, href:"?p=" + packageID
@@ -245,9 +243,7 @@ function updatePackageListPage(file) {
 				]
 			}));
 			getJSON({ url:"depictions/" + packageID + "/description.txt", callback:function(userInfo) {
-				//var e = document.getElementById(userInfo["packageID"]);
 				document.getElementById(userInfo["packageID"]).innerText = userInfo["name"];
-				//console.log(e + "~" + userInfo["packageID"] + ":" + userInfo["name"]);
 			}});
 		};
 		var packageID = "com.uroboro.test";
@@ -262,9 +258,29 @@ function updatePackageListPage(file) {
 			document.getElementById(userInfo["packageID"]).innerText = userInfo["name"];
 		}});
 	}
+
+	// Repository section
+	var repositoryList = document.getElementById("repositoryList");
+	if (repositoryList) {
+		var keys = ["Origin", "Description", "Version"];
+		for (var k in keys) {
+			var key = keys[k];
+			repositoryList.appendChild(eFD({ _type:"li"
+				, innerHTML:"<p><span style=\"color:#007aff\">"+key+"</span>: "+release[key]+"</p>"
+			}));
+		}
+		repositoryList.appendChild(eFD({ _type:"li"
+			, children:[
+				{ _type:"a", target:"_blank"
+					, href:shareLink()
+					, innerHTML:"Add to Cydia"
+				}
+			]
+		}));
+	}
 }
 
-
+// Package UI
 function loadPackageUI() {
 	// Description section
 	document.body.appendChild(eFD({ _type:"h2"
@@ -272,9 +288,10 @@ function loadPackageUI() {
 	}));
 	document.body.appendChild(eFD({ _type:"ul"
 		, children:[
-			  { _type:"li", id:"description" }
-			, { _type:"li", id:"screenshots" }
-			, { _type:"li", id:"changelog" }
+			  { _type:"li", id:"descriptionLink" }
+			, { _type:"li", id:"screenshotsLink" }
+			, { _type:"li", id:"changelogLink" }
+			, { _type:"li", id:"installLink" }
 		]
 	}));
 
@@ -308,33 +325,48 @@ function updatePackageUI(userInfo) {
 
 	// Package UI
 	// Description
-	var desc = document.getElementById("description");
-	if (desc) {
+	var descriptionLink = document.getElementById("descriptionLink");
+	if (descriptionLink) {
 		var description = userInfo["description"];
 		for (d in description) {
-			desc.appendChild(eFD({ _type:"p"
+			descriptionLink.appendChild(eFD({ _type:"p"
 				, innerHTML:description[d]
 			}));
 		}
 	}
+
 	// Screenshots link
-	var shlnk = document.getElementById("screenshots");
-	if (shlnk) {
+	var screenshotsLink = document.getElementById("screenshotsLink");
+	if (screenshotsLink) {
 		var screenshotCount = userInfo["screenshotCount"];
 		if (screenshotCount > 0 ) {
-			shlnk.appendChild(eFD({_type:"a", href:"?p=" + pkgID + "&screenshots=1"
+			screenshotsLink.appendChild(eFD({_type:"a", href:"?p=" + pkgID + "&screenshots=1"
 				, innerHTML:"Screenshots"
 			}));
 		} else {
-			elementRemoveFromParent(shlnk);
+			elementRemoveFromParent(screenshotsLink);
 		}
 	}
+
 	// Changelog link
-	var cllnk = document.getElementById("changelog");
-	if (cllnk) {
-		cllnk.appendChild(eFD({_type:"a", href:"?p=" + pkgID + "&changelog=1"
+	var changelogLink = document.getElementById("changelogLink");
+	if (changelogLink) {
+		changelogLink.appendChild(eFD({_type:"a", href:"?p=" + pkgID + "&changelog=1"
 			, innerHTML:"Changelog"
 		}));
+	}
+
+	// Install Link
+	var installLink = document.getElementById("installLink");
+	if (installLink) {
+		if (!viewer.cydia) {
+			installLink.appendChild(eFD({_type:"a", target:"_blank"
+				, href:shareLink(pkgID)
+				, innerHTML:"Install"
+			}));
+		} else {
+			elementRemoveFromParent(installLink);
+		}
 	}
 
 	// Developer info
@@ -356,7 +388,7 @@ function updatePackageUI(userInfo) {
 	}
 }
 
-
+// Screenshot UI
 function loadScreenshotUI() {
 	document.body.appendChild(eFD({ _type:"h2", id:"screenshotListTitle"
 		, innerHTML:"Screenshots of "
@@ -405,7 +437,7 @@ function updateScreenshotUI(userInfo) {
 	}
 }
 
-
+// Changelog UI
 function loadChangelogUI() {
 	document.body.appendChild(eFD({ _type:"h2", id:"changelogListTitle"
 		, innerHTML:"Changelog of "
@@ -448,6 +480,23 @@ function updateChangelogUI(userInfo) {
 			}));
 			b = !b;
 		};
+	}
+}
+
+// Footer UI
+function updateFooter() {
+	var repo = document.getElementById("repo");
+	if (repo) {
+		var txt = release["Origin"];
+		repo.appendChild(eFD({ _type:"a", target:"_blank"
+			, href:getWindowBaseHref()
+			, innerHTML:txt
+		}));
+		repo.appendChild(eFD({ _type:"text", text:" | " }));
+		repo.appendChild(eFD({ _type:"a", target:"_blank"
+			, href:shareLink()
+			, innerHTML:"Add to Cydia"
+		}));
 	}
 }
 
