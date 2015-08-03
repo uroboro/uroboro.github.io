@@ -166,18 +166,6 @@ function loadPackageListUI() {
 
 function updatePackageListPage(file) {
 	packagesFileCallback(file);
-	var array = file.split("\n").sort();
-	var packages = [];
-	for (i in array) {
-		var obj = array[i];
-		if (obj.indexOf("Package: ") > -1) {
-			var pkgID = obj.replace("Package: ","");
-			if (packages.indexOf(pkgID) == -1 ) {
-				packages.push(pkgID);
-			}
-		}
-	}
-//	elementPrintDescription(packages);
 
 	window.document.title = release["Origin"];
 
@@ -190,8 +178,7 @@ function updatePackageListPage(file) {
 	// List
 	var list = document.getElementById("packageList");
 	if (list) {
-		for (p in packages) {
-			var packageID = packages[p];
+		for (packageID in packages) {
 			list.appendChild(eFD({ _type:"li"
 				, children:[
 					{ _type:"a", id:packageID, href:"?p=" + packageID
@@ -223,7 +210,14 @@ function updatePackageListPage(file) {
 		for (var k in keys) {
 			var key = keys[k];
 			repositoryList.appendChild(eFD({ _type:"li"
-				, innerHTML:"<p><span style=\"color:#007aff\">"+key+"</span>: "+release[key]+"</p>"
+				, children:[
+					{ _type:"p"
+						  , children:[
+								  { _type:"span", style:"color:#007aff", innerHTML:key }
+								, { _type:"span", innerHTML:": " + release[key] }
+						]
+					}
+				]
 			}));
 		}
 		repositoryList.appendChild(eFD({ _type:"li"
@@ -399,11 +393,7 @@ function loadChangelogUI() {
 	document.body.appendChild(eFD({ _type:"h2", id:"changelogListTitle"
 		, innerHTML:"Changelog of "
 	}));
-	document.body.appendChild(eFD({ _type:"ul"
-		, children:[
-			{ _type:"li", id:"changelogList" }
-		]
-	}));
+	document.body.appendChild(eFD({ _type:"ul", id:"changelogList" }));
 	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
 
 	var query = getQuery();
@@ -430,12 +420,20 @@ function updateChangelogUI(userInfo) {
 	if (list) {
 		var b = 1;
 		var changelog = userInfo["changelog"];
-		for (d in changelog) {
-			var B = b ? " :" : "";
-			list.appendChild(eFD({ _type:"p"
-				, innerHTML:changelog[d] + B
+		for (var i = 0; i < changelog.length; i++) {
+			var number = changelog[i];
+			i++;
+			var text = changelog[i];
+			list.appendChild(eFD({ _type:"li"
+				, children:[
+					{ _type:"p"
+						  , children:[
+								  { _type:"span", style:"color:#007aff", innerHTML:number }
+								, { _type:"p", innerHTML:text }
+						]
+					}
+				]
 			}));
-			b = !b;
 		};
 	}
 }
