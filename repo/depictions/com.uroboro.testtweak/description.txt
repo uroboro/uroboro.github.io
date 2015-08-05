@@ -1,0 +1,14 @@
+{
+	"packageID":"com.uroboro.testtweak"
+	, "name":"Test Tweak"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "<text style=\"color: red;\">This package is a surprise.</text>"
+	]
+	, "changelog":[
+		  "X.Y.Z", "Surprise motherfucka!"
+	]
+	, "screenshotCount":0
+}
