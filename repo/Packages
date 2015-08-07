@@ -303,6 +303,22 @@ Name: TestTweak
 Author: uroboro <uroboro845@gmail.com>
 Depiction: 192.168.0.110:8000/repo/?p=com.uroboro.testtweak
 
+Package: com.uroboro.testtweak
+Version: 0.0.1-38
+Priority: optional
+Section: Tweaks
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Filename: ./pkgfiles/com.uroboro.testtweak_0.0.1-38_iphoneos-arm.deb
+Size: 11574
+Installed-Size: 76
+MD5sum: 44185f55765ee4c75790034c7c5e0aa4
+Description: A simple MobileSubstrate tweak!
+Name: TestTweak
+Author: uroboro <uroboro845@gmail.com>
+Depiction: https://uroboro.github.io/repo/?p=com.uroboro.testtweak
+
 Package: com.uroboro.tweak.nopromotions
 Version: 0.0.1-3
 Priority: optional
