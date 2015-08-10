@@ -257,6 +257,12 @@ function loadPackageUI() {
 		]
 	}));
 
+	// Comment section
+	document.body.appendChild(eFD({ _type:"h2"
+		, innerHTML:"Comments"
+	}));
+	document.body.appendChild(eFD({ _type:"ul", id:"commentList" }));
+
 	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
 
 	var query = getQuery();
@@ -337,6 +343,28 @@ function updatePackageUI(userInfo) {
 			, innerHTML:devName + "'s page"
 		}));
 	}
+
+	// Comment section
+	var list = document.getElementById("commentList");
+	if (list) {
+		list.appendChild(eFD({ _type:"li"
+			, children:[
+				{ _type:"script", id:"echochamber", type:"text/javascript"
+					, children:[
+					{ _type:"text", text:"var EchoChamber = window.EchoChamber || {};\
+(function() {\
+	EchoChamber.discussionURL = window.location;\
+	var script = document.createElement('script');\
+	script.src = 'https://s3.amazonaws.com/echochamberjs/dist/main.js';\
+	script.async = true;\
+	var entry = document.getElementById('echochamber');\
+	entry.parentNode.insertBefore(script, entry);\
+})();" }
+					]
+				}
+			]
+		}));
+	}
 }
 
 // Screenshot UI
@@ -394,6 +422,7 @@ function loadChangelogUI() {
 		, innerHTML:"Changelog of "
 	}));
 	document.body.appendChild(eFD({ _type:"ul", id:"changelogList" }));
+
 	document.body.appendChild(eFD({ _type:"p", id:"repo" }));
 
 	var query = getQuery();
