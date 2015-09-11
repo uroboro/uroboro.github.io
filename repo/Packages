@@ -75,6 +75,22 @@ Name: Wake-On-LAN Listener
 Author: uroboro <uroboro.845@gmail.com>
 Depiction: http://uroboro.github.io/repo/?p=com.uroboro.activator.listener.wol
 
+Package: com.uroboro.cydia.applicationlistingfix
+Version: 0.0.1-1
+Priority: optional
+Section: Tweaks
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Filename: ./pkgfiles/com.uroboro.cydia.applicationlistingfix_0.0.1-1_iphoneos-arm.deb
+Size: 3994
+Installed-Size: 72
+MD5sum: 80faa464fa0f78812b7206f4d47224ae
+Description: Fixes Cydia's crash when listing apps.
+Name: ApplicationListingFix
+Author: uroboro <uroboro845@gmail.com>
+Depiction: http://uroboro.github.io/repo/?p=com.uroboro.cydia.applicationlistingfix
+
 Package: com.uroboro.event.startup
 Version: 0.0.1-2
 Priority: optional

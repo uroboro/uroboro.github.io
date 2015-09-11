@@ -1,0 +1,13 @@
+{
+	"packageID":"com.uroboro.cydia.applicationlistingfix"
+	, "name":"Application Listing Fix"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Prevents Cydia from crashing on iOS 6 and below due to a symbol in SpringBoardServices changing its name from SBSCopyApplicationDisplayIdentifiers to SBSCopyDisplayIdentifiers."
+	]
+	, "changelog":[
+		  "0.0.1-1", "First."
+	]
+}
