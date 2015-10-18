@@ -303,6 +303,21 @@ Description: An awesome MobileSubstrate tweak!
 Name: Notification Explorer
 Author: uroboro <uroboro.845@gmail.com>
 
+Package: com.uroboro.notificationexplorer
+Version: 0.0.1-76
+Section: Tweaks
+Maintainer: uroboro <uroboro.845@gmail.com>
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Filename: ./pkgfiles/com.uroboro.notificationexplorer_0.0.1-76_iphoneos-arm.deb
+Size: 11934
+Installed-Size: 88
+MD5sum: 671ecbff82d8e40e2b45d956b69143bc
+Description: An awesome MobileSubstrate tweak!
+Name: Notification Explorer
+Author: uroboro <uroboro.845@gmail.com>
+Depiction: https://uroboro.github.io/repo/?p=con.uroboro.notificationexplorer
+
 Package: com.uroboro.testtweak
 Version: 0.0.1-37
 Priority: optional
