@@ -1,3 +1,20 @@
+Package: com.tyilo.certs
+Version: 0.0.1
+Priority: optional
+Section: Utilities
+Maintainer: uroboro <uroboro.845@gmail.com>
+Depends: firmware(>= 2.0)
+Architecture: iphoneos-arm
+Filename: ./pkgfiles/com.tyilo.certs.deb
+Size: 169066
+Installed-Size: 324
+MD5sum: 5eb440ea6dc0ae59cf5542a97403d961
+Description: CACerts for curl, wget, git.
+Name: Tyilo's CA Certs
+Author: uroboro <uroboro.845@gmail.com>
+Homepage: 
+Depiction: depiction
+
 Package: com.uroboro.activator.listener.swipefoldershortcut
 Version: 0.0.1-11
 Priority: optional
