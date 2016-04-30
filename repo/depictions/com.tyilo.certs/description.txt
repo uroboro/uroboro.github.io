@@ -1,0 +1,14 @@
+{
+	"packageID":"com.tyilo.certs"
+	, "name":"Tyilo Certs"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Certs for curl, wget and github. Provides wrappers for curl and wget in /usr/local that use the certs and sets git's sslCACerts setting on login."
+	]
+	, "changelog":[
+		  "1.0", "First!"
+	]
+	, "screenshotCount":0
+}

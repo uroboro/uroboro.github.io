@@ -14,7 +14,8 @@
 		, "0.0.1-72", "Fix"
 		, "0.0.1-73", "Fixed filter."
 		, "0.0.1-74", "Starts enabled."
-		, "0.0.1-76", "Reduced logic to single method."
+		, "0.0.1-75", "Reduced logic to single method."
+		, "0.0.1-76", "Updated filter."
 	]
 	, "screenshotCount":0
 }
