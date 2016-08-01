@@ -1,8 +1,0 @@
-{
-	"Thanks":[
-		  "microajax, http://microajax.googlecode.com/svn/trunk/microajax.js"
-		, "milodarling, https://github.com/milodarling/Easy-Repo-Depictions"
-		, "and in turn Kirb, https://github.com/hbang/iOS-7-CSS"
-	]
-	"consider_using":"https://raw.githubusercontent.com/hbang/iOS-7-CSS/master/ios7.min.css"
-}
