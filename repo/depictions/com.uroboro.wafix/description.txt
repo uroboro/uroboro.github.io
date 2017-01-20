@@ -1,0 +1,13 @@
+{
+	"packageID":"com.uroboro.wafix"
+	, "name":"WhatsApp Fix"
+	, "developer":"uroboro"
+	, "twitter":"uroboro845"
+	, "developerSite":"https://github.com/uroboro"
+	, "description":[
+		  "Bypasses the deprecation UI and Prevents WhatsApp from crashing due to a method not implemented."
+	]
+	, "changelog":[
+		  "0.0.1-1", "First."
+	]
+}

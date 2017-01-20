@@ -414,3 +414,17 @@ Name: UnlockEvents
 Author: uroboro <uroboro.845@gmail.com>
 Homepage: https://github.com/uroboro/UnlockEvents
 
+Package: com.uroboro.wafix
+Version: 0.0.1-13+debug
+Section: Tweaks
+Maintainer: uroboro <uroboro845@gmail.com>
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Filename: ./pkgfiles/com.uroboro.wafix_0.0.1-13+debug_iphoneos-arm.deb
+Size: 7146
+Installed-Size: 140
+MD5sum: 3eac62f325e05862f36a35725f220ae8
+Description: Bypass deprecation and prevent crashes.
+Name: WAFix
+Author: uroboro <uroboro845@gmail.com>
+
