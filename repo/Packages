@@ -1,3 +1,17 @@
+Package: com.pantsthief.phantomnoads
+Version: 0.0.1
+Section: Tweaks
+Maintainer: Tanner Bennett
+Depends: mobilesubstrate, com.cokepokes.phantom
+Architecture: iphoneos-arm
+Filename: ./pkgfiles/com.pantsthief.phantomnoads.deb
+Size: 7182
+Installed-Size: 136
+MD5sum: a94712b5998f41c069ba82787178418c
+Description: Disable Phantom's ads.
+Name: PhantomNoAds
+Author: Tanner Bennett
+
 Package: com.tyilo.certs
 Version: 0.0.1
 Priority: optional

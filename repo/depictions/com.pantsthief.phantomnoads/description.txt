@@ -1,0 +1,14 @@
+{
+    "packageID":"com.pantsthief.phantomnoads"
+    , "name":"PhantomNoAds"
+    , "developer":"Tanner Bennett"
+    , "twitter":"NSExceptional"
+    , "developerSite":"https://github.com/NSExceptional"
+    , "description":[
+          "Disables the ads shown by Phantom, which CokePokes has intentionally left on 18+ mode"
+    ]
+    , "changelog":[
+          "0.0.1", "Initial release"
+    ]
+    , "screenshotCount":0
+}
