@@ -1,0 +1,36 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<script type="text/javascript">
+function byte2Hex(n) {
+	var nybHexString = "0123456789ABCDEF";
+	return nybHexString.substr((n >> 4) & 0x0F, 1) + nybHexString.substr(n & 0x0F, 1);
+}
+function RGB2Color(r, g, b) {
+	return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
+}
+
+var t;
+var i = 0;
+
+function timedCount() {
+	frequency = .01;
+	a = 255 / 2;
+	m = 255 / 2;
+
+	r = m + a * Math.cos(frequency * i + 0 * Math.PI / 3);
+	g = m + a * Math.cos(frequency * i + 4 * Math.PI / 3);
+	b = m + a * Math.cos(frequency * i + 2 * Math.PI / 3);
+
+	document.bgColor = RGB2Color(r, g, b);
+	i++;
+	i %= (255 * 255 * 255);
+	t = setTimeout("timedCount()", 100);
+}
+		</script>
+	</head>
+	<body onload="timedCount()">
+	</body>
+</html>
