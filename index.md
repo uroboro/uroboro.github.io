@@ -1,4 +1,2 @@
 Hello world
 ===
-
-- [repo](repo/)
