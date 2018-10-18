@@ -4,7 +4,7 @@ function getQuery() {
 	var Q = {};
 	var c = 0;
 	if (url.indexOf('?') > 0) {
-		var q = url.substring(url.indexOf('?')+1, url.length);
+		var q = url.substring(url.indexOf('?') + 1, url.length);
 		var qs = q.split('&');
 		for (i in qs) {
 			var a = qs[i].split('=');
@@ -12,13 +12,15 @@ function getQuery() {
 			c++;
 		}
 	}
-	Q.__defineGetter__("length", function() { return c; });
+	Q.__defineGetter__('length', function() {
+		return c;
+	});
 	return Q;
 }
 
 function getJSON(x) {
-	return new microAjax(x.url, function (res) {
-//console.log(res);
+	return new microAjax(x.url, function(res) {
+		//console.log(res);
 		var j;
 		try {
 			j = JSON.parse(res);
@@ -34,24 +36,24 @@ function getJSON(x) {
 
 //http://www.javascriptkit.com/javatutors/loadjavascriptcss.shtml
 function include(filename) {
-	var s = filename.split(".");
+	var s = filename.split('.');
 	var ext = s[s.length - 1];
-	
+
 	var fileref;
-	if (ext == "js") {
+	if (ext == 'js') {
 		fileref = document.createElement('script');
-		fileref.setAttribute("type","text/javascript");
-		fileref.setAttribute("src", filename);
+		fileref.setAttribute('type', 'text/javascript');
+		fileref.setAttribute('src', filename);
 	}
-	if (ext == "css") {
+	if (ext == 'css') {
 		fileref = document.createElement('link');
-		fileref.setAttribute("rel", "stylesheet");
-		fileref.setAttribute("type", "text/css");
-		fileref.setAttribute("href", filename);
+		fileref.setAttribute('rel', 'stylesheet');
+		fileref.setAttribute('type', 'text/css');
+		fileref.setAttribute('href', filename);
 	}
 
 	//add to hierarchy
-	if (typeof fileref != "undefined") {
+	if (typeof fileref != 'undefined') {
 		documentHead().appendChild(fileref);
 	}
 }
@@ -69,7 +71,7 @@ function getWindowBaseHref() {
 	if (url.indexOf('?') < 0) {
 		return url;
 	}
-	var q = url.substring(0, url.indexOf('?')-1);
+	var q = url.substring(0, url.indexOf('?') - 1);
 	return q;
 }
 
@@ -82,5 +84,5 @@ function stopTimer() {
 }
 
 function scrollPageTo(x, y) {
-	location.href = "javascript:scrollTo(" + x + "," + y + ")";
+	location.href = 'javascript:scrollTo(' + x + ',' + y + ')';
 }
