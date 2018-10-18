@@ -33,12 +33,12 @@ function microAjax(url, callbackFunction) {
 	};
 
 	this.getRequest = function() {
-		if (window.ActiveXObject) return new ActiveXObject("Microsoft.XMLHTTP");
+		if (window.ActiveXObject) return new ActiveXObject('Microsoft.XMLHTTP');
 		else if (window.XMLHttpRequest) return new XMLHttpRequest();
 		return false;
 	};
 
-	this.postBody = arguments[2] || "";
+	this.postBody = arguments[2] || '';
 
 	this.callbackFunction = callbackFunction;
 	this.url = url;
@@ -48,13 +48,13 @@ function microAjax(url, callbackFunction) {
 		var req = this.request;
 		req.onreadystatechange = this.bindFunction(this.stateChange, this);
 
-		if (this.postBody !== "") {
-			req.open("POST", url, true);
-			req.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-			req.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-			req.setRequestHeader("Connection", "close");
+		if (this.postBody !== '') {
+			req.open('POST', url, true);
+			req.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+			req.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+			req.setRequestHeader('Connection', 'close');
 		} else {
-			req.open("GET", url, true);
+			req.open('GET', url, true);
 		}
 
 		req.send(this.postBody);

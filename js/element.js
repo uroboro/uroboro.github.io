@@ -5,26 +5,26 @@ function elementFromDictionary(dict) {
 	}
 	//elementPrintDescription(dict);
 
-	var type = dict["_type"];
+	var type = dict['_type'];
 	var obj;
-	if (type == "text") {
-		return document.createTextNode(dict["text"]);
+	if (type == 'text') {
+		return document.createTextNode(dict['text']);
 	} else {
 		obj = document.createElement(type);
 	}
 
 	for (var key in dict) {
-		if (key == "_type") {
+		if (key == '_type') {
 			continue;
 		}
 		if (dict[key] == null) {
 			continue;
 		}
-		if (key == "innerHTML") {
+		if (key == 'innerHTML') {
 			obj.innerHTML = dict[key];
 			continue;
 		}
-		if (key == "children") {
+		if (key == 'children') {
 			var d = dict[key];
 			for (o in d) {
 				obj.appendChild(elementFromDictionary(d[o]));
@@ -55,11 +55,11 @@ function elementPrintDescription(object) {
 }
 
 function elementDescription(object) {
-	var o = "<null>";
+	var o = '<null>';
 	try {
 		object.constructor;
 	} catch (e) {
-		return "undefined";
+		return 'undefined';
 	}
 	if (object.constructor == Number) {
 		o = elementDescriptionForNumber(object);
@@ -90,26 +90,26 @@ function elementDescriptionForString(object) {
 }
 
 function elementDescriptionForArray(object) {
-	var o = "[";
+	var o = '[';
 	var a = [];
 	for (var i in object) {
 		var value = object[i];
 		a.push(elementDescription(value));
 	}
-	o += a.join(",");
-	o += "]";
+	o += a.join(',');
+	o += ']';
 	return o;
 }
 
 function elementDescriptionForObject(object) {
-	var o = "{";
+	var o = '{';
 	var a = [];
 	for (var key in object) {
 		var value = object[key];
-		a.push(key + ":" + elementDescription(value));
+		a.push(key + ':' + elementDescription(value));
 	}
-	o += a.join(",");
-	o += "}";
+	o += a.join(',');
+	o += '}';
 	return o;
 }
 
