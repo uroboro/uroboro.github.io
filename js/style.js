@@ -13,7 +13,7 @@ function styleBasicButtonStyle() {
 	style += "box-shadow: rgba(0,0,0,1) 0 1px 0;";
 	style += "-webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;";
 	style += "-moz-box-shadow: rgba(0,0,0,1) 0 1px 0;";
-*/
+	*/
 	// TEXT
 	style += 'vertical-align: middle;';
 	style += 'color: white;';
@@ -29,7 +29,7 @@ function styleBasicButtonStyle() {
 	background: -moz-linear-gradient(top, #737373, #a4a4a4);
 	background: -ms-linear-gradient(top, #737373, #a4a4a4);
 	background: -o-linear-gradient(top, #737373, #a4a4a4);
-*/
+	*/
 	return style;
 }
 
