@@ -21,7 +21,7 @@ Release: Packages Packages.bz2
 	@echo " `sha256sum Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
 
 Packages:
-	@./dpkg-scanpackages -m . /dev/null > Packages
+	@dpkg-scanpackages -m . /dev/null > Packages
 
 Packages.bz2: Packages
 	@bzip2 -fk $^
