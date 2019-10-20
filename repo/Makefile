@@ -1,24 +1,28 @@
 #!/bin/sh
 
+MD5SUM := md5sum
+SHA1SUM := sha1sum
+SHA256SUM := sha256sum
+
 all: Release
 .PHONY: Packages Packages.bz2 Release
 
 Release: Packages Packages.bz2
-	$(eval SIZE1 := $(shell wc -c Packages | sed 's/[[:space:]].*//'))
-	$(eval SIZE2 := $(shell wc -c Packages.bz2 | sed 's/[[:space:]].*//'))
+	$(eval SIZE1 := $(shell wc -c Packages | awk '{print $$1}'))
+	$(eval SIZE2 := $(shell wc -c Packages.bz2 | awk '{print $$1}'))
 	@cp Release_ $@
 
 	@echo MD5Sum: >> $@
-	@echo " `md5sum Packages | sed "s/  / $(SIZE1) /"`" >> $@
-	@echo " `md5sum Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
+	@echo " `$(MD5SUM) Packages | sed "s/  / $(SIZE1) /"`" >> $@
+	@echo " `$(MD5SUM) Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
 
 	@echo SHA1: >> $@
-	@echo " `sha1sum Packages | sed "s/  / $(SIZE1) /"`" >> $@
-	@echo " `sha1sum Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
+	@echo " `$(SHA1SUM) Packages | sed "s/  / $(SIZE1) /"`" >> $@
+	@echo " `$(SHA1SUM) Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
 
 	@echo SHA256: >> $@
-	@echo " `sha256sum Packages | sed "s/  / $(SIZE1) /"`" >> $@
-	@echo " `sha256sum Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
+	@echo " `$(SHA256SUM) Packages | sed "s/  / $(SIZE1) /"`" >> $@
+	@echo " `$(SHA256SUM) Packages.bz2 | sed "s/  / $(SIZE2) /"`" >> $@
 
 Packages:
 	@dpkg-scanpackages -m . /dev/null > Packages

@@ -1,8 +1,8 @@
 Origin: uroboro's repository
 Label: uroboro's repo
-Suite: stable
+Description: A rather circular repository
 Version: 0.1
 Codename: uroboronest
-Architectures: iphoneos-arm
+Suite: stable
 Components: main
-Description: A rather circular repository
+Architectures: iphoneos-arm
